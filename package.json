@@ -15,7 +15,7 @@
     "clone":       "rm -rf $npm_package_config_srcDir && git clone $npm_package_config_url $npm_package_config_srcDir",
     "checkout":    "cd $npm_package_config_srcDir && git checkout $npm_package_config_hash",
     "build":       "cd $npm_package_config_srcDir && mvn -Dmaven.test.skip=true",
-    "postinstall": "npm run clone && npm run checkout && npm run build"
+    "postinstall": "grunt dedupe-infusion && npm run clone && npm run checkout && npm run build"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "See LICENSE file.",
