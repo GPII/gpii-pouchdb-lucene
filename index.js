@@ -1,0 +1,1 @@
+require("./src/js/gpii-pouchdb-lucene");

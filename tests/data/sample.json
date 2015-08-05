@@ -1,0 +1,19 @@
+{
+    "docs": [
+        {
+            "_id": "_design/lucene",
+            "fulltext": {
+                "by_content": {
+                    "index": "function(doc) { var ret=new Document(); ret.add(doc.content); return ret; }",
+                    "defaults": {
+                        "store": "yes"
+                    }
+                }
+            }
+        },
+        { "content": "Alpha Cat"},
+        { "content": "Bravo Dog"},
+        { "content": "Charlie Cat"},
+        { "content": "Delta Dog"}
+    ]
+}
