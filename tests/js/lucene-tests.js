@@ -17,7 +17,6 @@ fluid.registerNamespace("gpii.pouch.lucene.tests");
 
 fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
     gradeNames: ["fluid.test.testCaseHolder", "autoInit"],
-    // TODO: Review with Antranig.  We are use `assertLeftHand` for these, but the left-handedness is too shallow to inspect actual records.
     expected: {
         // Because of limitations when comparing array data, we have to split each expected set of results into pieces,
         // one piece that can be compared with the overall results (overall), and one piece that can be compared to
@@ -51,7 +50,6 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
     // Our raw test cases, that will have `sequenceStart` prepended before they are run.
     rawModules: [
         {
-            // TODO:  Review this once we have an approach to ensuring that Pouch can be safely launched multiple times from a single test harness.
             tests: [
                 {
                     name: "Testing a basic search...",
