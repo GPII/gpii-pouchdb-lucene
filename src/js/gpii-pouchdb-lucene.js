@@ -52,24 +52,15 @@ gpii.pouch.lucene.init = function (that){
     // Start the service using either the batch file on windows, or the shell script on anything else.
     fluid.log("Starting couchdb-lucene...");
     var script = os.platform().indexOf("win") === 0 ? "bin/run.bat" : "sh bin/run"; // The unix script is not always executable when it's unpacked.
-    that.process = child_process.exec(script, { cwd: workingDir}), that.handleProcessExit;
+    that.process = child_process.exec(script, { cwd: workingDir});
 
-    that.process.stdout.on('data',that.waitForStartup);
+    that.process.stdout.on("data", that.waitForStartup);
 };
 
 // Ensure that the service is stopped on component destruction
 gpii.pouch.lucene.stopProcess = function (that) {
     if (that.process) {
         that.process.kill();
-    }
-};
-
-gpii.pouch.lucene.handleProcessExit = function (that, error, stdout) {
-    if (error) {
-        fluid.fail(error);
-    }
-    else {
-        fluid.log(stdout);
     }
 };
 
@@ -140,10 +131,6 @@ fluid.defaults("gpii.pouch.lucene", {
         }
     },
     invokers: {
-        handleProcessExit: {
-            funcName: "gpii.pouch.lucene.handleProcessExit",
-            args:     ["{that}", "{arguments}.0", "{arguments}.1", "{arguments}.2"]
-        },
         waitForStartup: {
             funcName: "gpii.pouch.lucene.waitForStartup",
             args:     ["{that}", "{arguments}.0"]
