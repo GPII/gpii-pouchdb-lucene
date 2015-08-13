@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A wrapper for couchdb-lucene to allow it to be required and used in tests.",
   "main": "index.js",
+  "repository": "https://github.com/GPII/gpii-pouchdb-lucene/",
   "config": {
     "url": "https://github.com/rnewson/couchdb-lucene.git",
     "hash": "ce773de1becf8a400e0344a43cf6eea3134dcc63",
@@ -18,20 +19,20 @@
     "postinstall": "grunt dedupe-infusion && npm run clone && npm run checkout && npm run build"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
-  "license": "See LICENSE file.",
+  "license": "BSD-3-Clause",
   "dependencies": {
-    "infusion": "git://github.com/fluid-project/infusion.git#605b0bcfaedf6193c31456236d3aa4e42cf36a96",
-    "request": "2.54.0"
-  },
-  "devDependencies": {
-    "adm-zip":              "^0.4.7",
-    "gpii-express":         "git://github.com/GPII/gpii-express#d2b57d7920270926a0fad77c81a39541a2a1a6e6",
-    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#55b8b3bafb170183985cc529cf84bf00caee5fae",
+    "infusion":             "git://github.com/fluid-project/infusion.git#605b0bcfaedf6193c31456236d3aa4e42cf36a96",
+    "request":              "2.54.0",
     "grunt":                "~0.4.4",
     "grunt-contrib-jshint": "~0.9.0",
     "grunt-gpii":           "git://github.com/GPII/grunt-gpii.git#58ae055833f437a9e91baedb9f39a22c5fdd727f",
     "grunt-jsonlint":       "1.0.4",
-    "grunt-shell":          "0.6.4",
+    "grunt-shell":          "0.6.4"
+  },
+  "devDependencies": {
+    "adm-zip":              "^0.4.7",
+    "gpii-express":         "git://github.com/GPII/gpii-express#d2b57d7920270926a0fad77c81a39541a2a1a6e6",
+    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#17957308f9ec5ab870941e7c0def4c6415bc51e8",
     "jqUnit":               "git://github.com/fluid-project/node-jqUnit.git#e9bf72445bd343a4f3aabe3ba96a1087d3498612",
     "kettle":               "git://github.com/fluid-project/kettle.git#e79bb81196df68c97eaa9f96c485a4321b69af75"
   }
