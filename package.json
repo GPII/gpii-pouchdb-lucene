@@ -12,7 +12,7 @@
     "distDir": "dist"
   },
   "scripts": {
-    "test":        "node tests/all-tests.js",
+    "test":        "node tests/js/lucene-tests.js",
     "clone":       "rm -rf $npm_package_config_srcDir && git clone $npm_package_config_url $npm_package_config_srcDir",
     "checkout":    "cd $npm_package_config_srcDir && git checkout $npm_package_config_hash",
     "build":       "cd $npm_package_config_srcDir && mvn -Dmaven.test.skip=true",
@@ -21,7 +21,7 @@
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "infusion":             "git://github.com/fluid-project/infusion.git#605b0bcfaedf6193c31456236d3aa4e42cf36a96",
+    "infusion":                  "git://github.com/fluid-project/infusion.git#282f1a318718eed0b0ec060fb8b4ad254417fd7e",
     "request":              "2.54.0",
     "grunt":                "~0.4.4",
     "grunt-contrib-jshint": "~0.9.0",
@@ -31,9 +31,9 @@
   },
   "devDependencies": {
     "adm-zip":              "^0.4.7",
-    "gpii-express":         "git://github.com/GPII/gpii-express#d2b57d7920270926a0fad77c81a39541a2a1a6e6",
-    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#17957308f9ec5ab870941e7c0def4c6415bc51e8",
-    "jqUnit":               "git://github.com/fluid-project/node-jqUnit.git#e9bf72445bd343a4f3aabe3ba96a1087d3498612",
-    "kettle":               "git://github.com/fluid-project/kettle.git#e79bb81196df68c97eaa9f96c485a4321b69af75"
+    "gpii-express": "git://github.com/GPII/gpii-express#72850f74cd05229216467b3e9af3c7364f4beee5",
+    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#7dac450a5efb73968313eb671e03de38ffc5a0bc",
+    "jqUnit":     "git://github.com/fluid-project/node-jqUnit.git#b7ef53aac1ca365bf23d35d255fae874faa88b70",
+    "kettle":     "git://github.com/amb26/kettle.git#33e2826e78315c6d29b13c8ba810f54fef29e8ac"
   }
 }

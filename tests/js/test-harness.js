@@ -10,7 +10,7 @@ var path = require("path");
 var sampleDataFile = path.resolve(__dirname, "../data/sample.json");
 
 fluid.defaults("gpii.pouch.lucene.tests.harness", {
-    gradeNames: ["fluid.eventedComponent", "autoInit"],
+    gradeNames: ["gpii.express.tests.caseHolder"],
     pouchPort:  "9753",
     baseUrl:    "http://localhost:9753", // TODO: Convert these to use template strings
     lucenePort: "3579",

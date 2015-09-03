@@ -6,17 +6,17 @@ fluid.setLogging(true);
 var gpii  = fluid.registerNamespace("gpii");
 
 // We use just the request-handling bits of the kettle stack in our tests, but we include the whole thing to pick up the base grades
+require("../../node_modules/gpii-express/tests/js/lib/test-helpers");
 require("../../node_modules/kettle");
 require("../../node_modules/kettle/lib/test/KettleTestUtils");
 
 require("./test-harness");
-require("../lib/sequence");
 require("../lib/saneresponse");
 
 fluid.registerNamespace("gpii.pouch.lucene.tests");
 
 fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
-    gradeNames: ["fluid.test.testCaseHolder", "autoInit"],
+    gradeNames: ["gpii.express.tests.caseHolder"],
     expected: {
         // Because of limitations when comparing array data, we have to split each expected set of results into pieces,
         // one piece that can be compared with the overall results (overall), and one piece that can be compared to
@@ -30,23 +30,6 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
             rows: [{ "fields": { "default": "Charlie Cat" } }, { "fields": { "default": "Alpha Cat" } }]
         }
     },
-    mergePolicy: {
-        rawModules:    "noexpand",
-        sequenceStart: "noexpand"
-    },
-    moduleSource: {
-        funcName: "gpii.lucene.pouch.tests.addRequiredSequences",
-        args:     ["{that}.options.sequenceStart", "{that}.options.rawModules"]
-    },
-    sequenceStart: [
-        { // This sequence point is required because of a QUnit bug - it defers the start of sequence by 13ms "to avoid any current callbacks" in its words
-            func: "{testEnvironment}.events.constructServer.fire"
-        },
-        {
-            listener: "fluid.identity",
-            event:    "{testEnvironment}.events.onReady"
-        }
-    ],
     // Our raw test cases, that will have `sequenceStart` prepended before they are run.
     rawModules: [
         {
@@ -104,13 +87,13 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
 
 
 fluid.defaults("gpii.pouch.lucene.tests", {
-    gradeNames: ["fluid.test.testEnvironment", "autoInit"],
+    gradeNames: ["fluid.test.testEnvironment"],
     pouchPort:  "9998",
     baseUrl:    "http://localhost:9998", // TODO: Convert these to use template strings
     lucenePort: "3598",
     events: {
         constructServer: null,
-        onReady:         null
+        onStarted:       null
     },
     components: {
         harness: {
@@ -122,7 +105,7 @@ fluid.defaults("gpii.pouch.lucene.tests", {
                 lucenePort: "{testEnvironment}.options.lucenePort",
                 listeners: {
                     "onStarted.notifyParent": {
-                        func: "{testEnvironment}.events.onReady.fire"
+                        func: "{testEnvironment}.events.onStarted.fire"
                     }
                 }
             }

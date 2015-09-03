@@ -88,7 +88,7 @@ gpii.pouch.lucene.generateIniContent = function(that) {
 };
 
 fluid.defaults("gpii.pouch.lucene", {
-    gradeNames:   ["fluid.eventedComponent", "autoInit"],
+    gradeNames:   ["fluid.component"],
     port:         9999,
     startupDelay: 250, // How long to wait before reporting that couchdb-lucene is ready.
     dbUrl:        "http://localhost:5986/ul",
@@ -121,6 +121,7 @@ fluid.defaults("gpii.pouch.lucene", {
             funcName: "gpii.pouch.lucene.init",
             args:     ["{that}"]
         },
+        // TODO:  Review with Antranig and find a way to handle this bit of shutdown cleanly.
         "onDestroy.stopProcess": {
             funcName: "gpii.pouch.lucene.stopProcess",
             args:     ["{that}"]
