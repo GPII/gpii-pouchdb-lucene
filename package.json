@@ -21,7 +21,7 @@
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "infusion":                  "git://github.com/fluid-project/infusion.git#282f1a318718eed0b0ec060fb8b4ad254417fd7e",
+    "infusion":             "git://github.com/fluid-project/infusion.git#282f1a318718eed0b0ec060fb8b4ad254417fd7e",
     "request":              "2.54.0",
     "grunt":                "~0.4.4",
     "grunt-contrib-jshint": "~0.9.0",
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "adm-zip":              "^0.4.7",
-    "gpii-express":         "git://github.com/the-t-in-rtf/gpii-express#46d71db841cb4831649201aab123d690628a9e15",
-    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#478780cc61f60e7eded71819354c55026d96caf5",
+    "gpii-express":         "git://github.com/the-t-in-rtf/gpii-express#4750af51a1fbe886a260d89097e58c1c624ab4f7",
+    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#f56fca6cf89c6092a37169504c44b0aedf12f580",
     "jqUnit":               "git://github.com/fluid-project/node-jqUnit.git#b7ef53aac1ca365bf23d35d255fae874faa88b70",
     "kettle":               "git://github.com/amb26/kettle.git#33e2826e78315c6d29b13c8ba810f54fef29e8ac"
   }
