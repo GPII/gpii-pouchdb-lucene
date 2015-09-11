@@ -31,9 +31,9 @@
   },
   "devDependencies": {
     "adm-zip":              "^0.4.7",
-    "gpii-express": "git://github.com/GPII/gpii-express#72850f74cd05229216467b3e9af3c7364f4beee5",
-    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#7dac450a5efb73968313eb671e03de38ffc5a0bc",
-    "jqUnit":     "git://github.com/fluid-project/node-jqUnit.git#b7ef53aac1ca365bf23d35d255fae874faa88b70",
-    "kettle":     "git://github.com/amb26/kettle.git#33e2826e78315c6d29b13c8ba810f54fef29e8ac"
+    "gpii-express":         "git://github.com/the-t-in-rtf/gpii-express#46d71db841cb4831649201aab123d690628a9e15",
+    "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#478780cc61f60e7eded71819354c55026d96caf5",
+    "jqUnit":               "git://github.com/fluid-project/node-jqUnit.git#b7ef53aac1ca365bf23d35d255fae874faa88b70",
+    "kettle":               "git://github.com/amb26/kettle.git#33e2826e78315c6d29b13c8ba810f54fef29e8ac"
   }
 }
