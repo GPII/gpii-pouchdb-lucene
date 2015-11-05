@@ -1,7 +1,7 @@
 // A common function to confirm that the response sent by the server meets our standards.
 "use strict";
-var fluid  = fluid || require("infusion");
-var jqUnit = jqUnit || require("jqUnit");
+var fluid  = require("infusion");
+var jqUnit = require("node-jqunit");
 var gpii   = fluid.registerNamespace("gpii");
 
 require("../lib/superset");

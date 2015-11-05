@@ -1,14 +1,16 @@
 // Sanity checks for search integration.  As these are read only, we use a single instance for all tests.
 "use strict";
 var fluid = fluid || require("infusion");
+fluid.loadTestingSupport();
 fluid.setLogging(true);
 
 var gpii  = fluid.registerNamespace("gpii");
 
-// We use just the request-handling bits of the kettle stack in our tests, but we include the whole thing to pick up the base grades
 require("../../node_modules/gpii-express/tests/js/lib/test-helpers");
-require("../../node_modules/kettle");
-require("../../node_modules/kettle/lib/test/KettleTestUtils");
+
+
+var kettle = require("kettle");
+kettle.loadTestingSupport();
 
 require("./test-harness");
 require("../lib/saneresponse");
@@ -35,7 +37,8 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
         {
             tests: [
                 {
-                    name: "Testing a basic search...",
+                    //name: "Testing a basic search...",
+                    name: "Testing lucene search integration...",
                     type: "test",
                     sequence: [
                         {
@@ -43,28 +46,38 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                         },
                         {
                             listener: "gpii.pouch.lucene.tests.isSaneResponse",
-                            event: "{basicRequest}.events.onComplete",
-                            args: ["{basicRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.basic"]
-                        }
-                    ]
-                },
-                {
-                    name: "Testing a sorted search...",
-                    type: "test",
-                    sequence: [
+                            event:    "{basicRequest}.events.onComplete",
+                            args:     ["{basicRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.basic"]
+                        },
                         {
                             func: "{sortedRequest}.send"
                         },
                         {
                             listener: "gpii.pouch.lucene.tests.isSaneResponse",
-                            event: "{sortedRequest}.events.onComplete",
-                            args: ["{sortedRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.sorted"]
+                            event:    "{sortedRequest}.events.onComplete",
+                            args:     ["{sortedRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.sorted"]
                         }
                     ]
-                }
+                },
+                // TODO:  Review with Antranig, figure out how to prevent the second test harness from being destroyed prematurely
+                //{
+                //    name: "Testing a sorted search...",
+                //    type: "test",
+                //    sequence: [
+                //        {
+                //            func: "{sortedRequest}.send"
+                //        },
+                //        {
+                //            listener: "gpii.pouch.lucene.tests.isSaneResponse",
+                //            event:    "{sortedRequest}.events.onComplete",
+                //            args:     ["{sortedRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.sorted"]
+                //        }
+                //    ]
+                //}
             ]
         }
     ],
+
     components: {
         basicRequest: {
             type: "kettle.test.request.http",
@@ -89,7 +102,12 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
 fluid.defaults("gpii.pouch.lucene.tests", {
     gradeNames: ["fluid.test.testEnvironment"],
     pouchPort:  "9998",
-    baseUrl:    "http://localhost:9998", // TODO: Convert these to use template strings
+    baseUrl:    {
+        expander: {
+            funcName: "fluid.stringTemplate",
+            args:     ["http://localhost:%port", { port: "{that}.options.pouchPort"}]
+        }
+    },
     lucenePort: "3598",
     events: {
         constructServer: null,

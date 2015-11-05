@@ -5,10 +5,10 @@
 // We use this general pattern in a few places, this one is tailored to the type of results returned by couchdb-lucene.
 //
 "use strict";
-var fluid = fluid || require("infusion");
+var fluid = require("infusion");
 var gpii  = fluid.registerNamespace("gpii");
 
-var jqUnit = require("jqUnit");
+var jqUnit = require("node-jqunit");
 
 fluid.registerNamespace("gpii.pouch.lucene.tests");
 gpii.pouch.lucene.tests.assertSuperset = function (message, expected, actual) {

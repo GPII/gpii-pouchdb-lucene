@@ -1,22 +1,24 @@
 // The common test harness we will use for all tests as well as manual verification.
 "use strict";
-var fluid = fluid || require("infusion");
+var fluid = require("infusion");
 
 require("../../index");
-require("gpii-express"); // TODO:  gpii-pouch should bring this in for us.
+require("gpii-express");
+require("gpii-express/tests/js/lib/test-helpers");
 require("gpii-pouch");
 
 var path = require("path");
 var sampleDataFile = path.resolve(__dirname, "../data/sample.json");
 
 fluid.defaults("gpii.pouch.lucene.tests.harness", {
-    gradeNames: ["gpii.express.tests.caseHolder"],
+    gradeNames: ["fluid.component"],
     pouchPort:  "9753",
     baseUrl:    "http://localhost:9753", // TODO: Convert these to use template strings
     lucenePort: "3579",
     events: {
-        onPouchStarted: null,
-        onLuceneStarted: null,
+        onReadyToDie:     null,
+        onPouchStarted:   null,
+        onLuceneStarted:  null,
         onExpressStarted: null,
         onStarted: {
             events: {

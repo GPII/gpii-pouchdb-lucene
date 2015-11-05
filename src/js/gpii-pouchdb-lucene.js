@@ -121,7 +121,7 @@ fluid.defaults("gpii.pouch.lucene", {
             funcName: "gpii.pouch.lucene.init",
             args:     ["{that}"]
         },
-        // TODO:  Review with Antranig and find a way to handle this bit of shutdown cleanly.
+        // TODO:  Review with Antranig and find a way to handle this bit of shutdown more cleanly.
         "onDestroy.stopProcess": {
             funcName: "gpii.pouch.lucene.stopProcess",
             args:     ["{that}"]
