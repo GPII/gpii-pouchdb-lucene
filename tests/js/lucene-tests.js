@@ -8,6 +8,7 @@ var gpii  = fluid.registerNamespace("gpii");
 
 require("../../node_modules/gpii-express/tests/js/lib/test-helpers");
 
+var jqUnit = require("node-jqunit");
 
 var kettle = require("kettle");
 kettle.loadTestingSupport();
@@ -16,6 +17,10 @@ require("./test-harness");
 require("../lib/saneresponse");
 
 fluid.registerNamespace("gpii.pouch.lucene.tests");
+
+gpii.pouch.lucene.tests.expectNothing = function (){
+    jqUnit.expect(0);
+};
 
 fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
     gradeNames: ["gpii.express.tests.caseHolder"],
@@ -50,30 +55,54 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                             args:     ["{basicRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.basic"]
                         },
                         {
+                            func: "{testEnvironment}.harness.lucene.events.onReadyForShutdown.fire"
+                        },
+                        {
+                            listener: "fluid.identity",
+                            event:    "{testEnvironment}.harness.lucene.events.onShutdownComplete"
+                        }
+                    ]
+                },
+                {
+                    name: "Testing a sorted search...",
+                    type: "test",
+                    sequence: [
+                        {
                             func: "{sortedRequest}.send"
                         },
                         {
                             listener: "gpii.pouch.lucene.tests.isSaneResponse",
                             event:    "{sortedRequest}.events.onComplete",
                             args:     ["{sortedRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.sorted"]
+                        },
+                        {
+                            func: "{testEnvironment}.harness.lucene.events.onReadyForShutdown.fire"
+                        },
+                        {
+                            listener: "fluid.identity",
+                            event:    "{testEnvironment}.harness.lucene.events.onShutdownComplete"
                         }
                     ]
                 },
-                // TODO:  Review with Antranig, figure out how to prevent the second test harness from being destroyed prematurely
-                //{
-                //    name: "Testing a sorted search...",
-                //    type: "test",
-                //    sequence: [
-                //        {
-                //            func: "{sortedRequest}.send"
-                //        },
-                //        {
-                //            listener: "gpii.pouch.lucene.tests.isSaneResponse",
-                //            event:    "{sortedRequest}.events.onComplete",
-                //            args:     ["{sortedRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.sorted"]
-                //        }
-                //    ]
-                //}
+                {
+                    name: "Test the process timeout...",
+                    type: "test",
+                    sequence: [
+                        // There are no explicit assertions in this test, the fact that the last event is reached is enough.
+                        // We have to let jqUnit know about this or it will throw its own error.
+                        {
+                            funcName: "gpii.pouch.lucene.tests.expectNothing"
+                        },
+                        {
+                            func: "fluid.log",
+                            args: ["pouchdb-lucene should time out after ", "{testEnvironment}.harness.lucene.options.processTimeout", " seconds..."]
+                        },
+                        {
+                            listener: "fluid.identity",
+                            event:    "{testEnvironment}.harness.lucene.events.onReadyForShutdown"
+                        }
+                    ]
+                }
             ]
         }
     ],

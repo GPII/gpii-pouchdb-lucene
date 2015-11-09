@@ -66,8 +66,9 @@ fluid.defaults("gpii.pouch.lucene.tests.harness", {
         lucene: {
             type: "gpii.pouch.lucene",
             options: {
-                port:  "{harness}.options.lucenePort",
-                dbUrl: "{harness}.options.baseUrl",
+                port:           "{harness}.options.lucenePort",
+                dbUrl:          "{harness}.options.baseUrl",
+                processTimeout: 4000,
                 listeners: {
                     "onStarted.notifyParent": {
                         func: "{harness}.events.onLuceneStarted.fire"
