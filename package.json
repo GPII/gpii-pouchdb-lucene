@@ -22,7 +22,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip":              "^0.4.7",
-    "gpii-express":         "git://github.com/the-t-in-rtf/gpii-express#ffc96bad77180b31f34654f268597caa93570683",
+    "gpii-express":         "git://github.com/the-t-in-rtf/gpii-express#dcb5648aeeef28594dddf6870245f0dc2df682a8",
     "gpii-pouch":           "git://github.com/the-t-in-rtf/gpii-pouchdb.git#f56fca6cf89c6092a37169504c44b0aedf12f580",
     "infusion":             "git://github.com/fluid-project/infusion.git#539c8dc6bdd2170944c0a4c58da52dd37fb098c0",
     "request":              "2.54.0",

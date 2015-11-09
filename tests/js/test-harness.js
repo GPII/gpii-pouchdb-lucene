@@ -3,8 +3,10 @@
 var fluid = require("infusion");
 
 require("../../index");
-require("gpii-express");
-require("gpii-express/tests/js/lib/test-helpers");
+
+var express = require("gpii-express");
+express.loadTestingSupport();
+
 require("gpii-pouch");
 
 var path = require("path");

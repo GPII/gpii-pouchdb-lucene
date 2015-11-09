@@ -6,15 +6,13 @@ fluid.setLogging(true);
 
 var gpii  = fluid.registerNamespace("gpii");
 
-require("../../node_modules/gpii-express/tests/js/lib/test-helpers");
+require("./test-harness");
+require("../lib/saneresponse");
 
 var jqUnit = require("node-jqunit");
 
 var kettle = require("kettle");
 kettle.loadTestingSupport();
-
-require("./test-harness");
-require("../lib/saneresponse");
 
 fluid.registerNamespace("gpii.pouch.lucene.tests");
 
