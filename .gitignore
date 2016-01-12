@@ -1,3 +1,2 @@
-src/couchdb-lucene
 dist/*
 node_modules

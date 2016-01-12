@@ -55,11 +55,12 @@ var child_process = require("child_process");
 // There are some constants that we use in `npm` scripts as well as here, they are found in `package.json`.
 var npmSettings = require("../../package.json");
 
-// Pick up the default location for the "dist" zip file we will unpack before we launch.
-var zipPath     = path.resolve(__dirname, "../..", npmSettings.config.srcDir, "target");
-var zipFilename = "couchdb-lucene-" + npmSettings.config.version + "-dist.zip";
-var tmpDir      = os.tmpdir();
+// Configure our directory locations based on the module location and the OS temporary directory.
+var basePath = fluid.module.resolvePath("%gpii-pouchdb-lucene/");
+var zipPath  = path.resolve(basePath, npmSettings.config.zipPath);
+var tmpDir   = os.tmpdir();
 
+var fs = require("fs");
 
 fluid.registerNamespace("gpii.pouch.lucene");
 gpii.pouch.lucene.init = function (that){
@@ -70,8 +71,11 @@ gpii.pouch.lucene.init = function (that){
     fluid.log("Creating working directory for this instance...");
     fluid.log("output dir = " + outputDir);
 
-    var zipFile = path.resolve(that.options.zipPath, that.options.zipFilename);
-    var distZip = new AdmZip(zipFile);
+    if (!fs.existsSync(that.options.zipPath)) {
+        fluid.fail("The specified couchdb-lucene zip file doesn't exist: '" + that.options.zipPath + "'...");
+    }
+
+    var distZip = new AdmZip(that.options.zipPath);
     distZip.extractAllTo(outputDir);
 
     var workingDir = path.resolve(outputDir, "couchdb-lucene-" + npmSettings.config.version);
@@ -151,7 +155,6 @@ fluid.defaults("gpii.pouch.lucene", {
     },
     // The location of our distribution zip and working directory.  You should not need to change these.
     zipPath:     zipPath,
-    zipFilename: zipFilename,
     tmpDir:      tmpDir,
     members: {
         process: false

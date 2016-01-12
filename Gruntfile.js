@@ -1,10 +1,15 @@
 "use strict";
+/*
+
+    Many of these tasks are configured using variables defined in `package.json`.  Check that file for the actual
+    settings.
+
+*/
 
 module.exports = function (grunt) {
-
-    // TODO:  Clean up the project structure into cleanly separated pieces with their own standard src and tests.
-    // TODO:  Set up separate checks for the couchapp content, with a different .jshintrc
+    var pkg = grunt.file.readJSON("package.json");
     grunt.initConfig({
+        pkg: pkg,
         jshint: {
             src: ["./**/*.js"],
             buildScripts: ["Gruntfile.js"],
@@ -14,6 +19,29 @@ module.exports = function (grunt) {
         },
         jsonlint: {
             src: ["tests/**/*.json"]
+        },
+        clean: [ "<%= pkg.config.srcDir %>" ],
+        gitclone: {
+            clone_couchdb_lucene: {
+                options: {
+                    cwd:        "<%= pkg.config.buildDir %>",
+                    repository: "<%= pkg.config.url %>"
+                }
+            }
+        },
+        gitcheckout: {
+            checkout_couchdb_lucene_hash: {
+                options: {
+                    cwd:    "<%= pkg.config.srcDir %>",
+                    branch: "<%= pkg.config.hash %>"
+                }
+            }
+        },
+        exec: {
+            couchdb_maven_build: {
+                cwd: "<%= pkg.config.srcDir %>",
+                cmd: "mvn -Dmaven.test.skip=true"
+            }
         }
     });
 
@@ -21,5 +49,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-jsonlint");
     grunt.loadNpmTasks("grunt-shell");
     grunt.loadNpmTasks("grunt-gpii");
+    grunt.loadNpmTasks("grunt-git");
+    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks("grunt-exec");
 
+    grunt.task.registerTask("build_couchdb_lucene", "Builds couchdb-lucene if needed.  Remove build/couchdb-lucene to force a fresh build.", function(){
+        if (grunt.file.exists(pkg.config.zipPath)) {
+            grunt.log.writeln("couchdb-lucene has already been built, skipping...");
+        }
+        else {
+            grunt.log.writeln("Building couchdb-lucene...");
+            grunt.task.run("clean", "gitclone", "gitcheckout", "exec");
+        }
+    });
 };
