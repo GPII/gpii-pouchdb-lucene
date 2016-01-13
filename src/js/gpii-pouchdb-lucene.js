@@ -78,8 +78,8 @@ gpii.pouch.lucene.init = function (that){
     var distZip = new AdmZip(that.options.zipPath);
     distZip.extractAllTo(outputDir);
 
-    var workingDir = path.resolve(outputDir, "couchdb-lucene-" + npmSettings.config.version);
-    var confFile    = path.resolve(workingDir, "conf", "couchdb-lucene.ini");
+    that.workingDir = path.resolve(outputDir, "couchdb-lucene-" + npmSettings.config.version);
+    var confFile   = path.resolve(that.workingDir, "conf", "couchdb-lucene.ini");
 
     fluid.log("Generating configuration file...");
     var iniContent = gpii.pouch.lucene.generateIniContent(that);
@@ -90,19 +90,21 @@ gpii.pouch.lucene.init = function (that){
 
     // Windows
     if (os.platform().indexOf("win") === 0) {
-        that.process = child_process.spawn("cmd.exe ", [workingDir + "\\bin\\run.bat"]);
+        that.process = child_process.spawn("cmd.exe ", [that.workingDir + "\\bin\\run.bat"], { stdio: ["inherit", "inherit", "inherit"]});
     }
     // Anything else
     else {
          // The unix script is not always executable when it's unpacked.
-        that.process = child_process.spawn("sh", [workingDir + "/bin/run"]);
+        that.process = child_process.spawn("sh", [that.workingDir + "/bin/run"], { stdio: ["inherit", "inherit", "inherit"]});
     }
 
     that.process.on("close", function () {
         that.respondToProcessTermination(that.process.stderr);
     });
 
-    that.process.stdout.on("data", that.waitForStartup);
+    // We have to do this with an interval because all other methods have failed us horribly.  Somehow an initial
+    // check is too early, and a check after our process has been created is too late.  We are left with polling...
+    that.interval = setInterval(that.checkForStartupMessage, that.options.pollInterval);
 };
 
 // Report any errors if the process ends abnormally.  We do not care about "normal" process kills, only abnormal exits.
@@ -124,15 +126,26 @@ gpii.pouch.lucene.stopProcess = function (that) {
     }
 };
 
-// Monitor the process' logs for "Accepting connections" and fire an `onStarted` event when the service is ready to
-// accept connections.
-gpii.pouch.lucene.waitForStartup = function (that, chunk) {
-    var stringContent = chunk.toString();
-    if (stringContent.indexOf("Accepting connections") !== -1) {
-        // pouchdb-lucene is actually ready a few milliseconds after the log message we look for.
-        setTimeout(function(){ that.events.onStarted.fire(that); }, that.options.startupDelay);
+// Periodically examine the contents of `that.workingDir` + `logs/couchdb-lucene.log`.
+//
+// We are looking for the text "Accepting connections", if we find it we fire an `onStarted` event.
+//
+// We have to do it this way because:
+//
+// 1. binding a listener to the stdout stream for the process won't work if the message we are looking for has already been sent.
+// 2. monitoring the log directory or file seems to miss the startup on later passes.
+//
+gpii.pouch.lucene.checkForStartupMessage = function (that) {
+    var filePath = path.resolve(that.workingDir, "logs/couchdb-lucene.log");
+    if (fs.existsSync(filePath)) {
+        var stringContent = fs.readFileSync(filePath, {encoding: "utf8"});
+        if (stringContent.indexOf("Accepting connections") !== -1) {
+            clearInterval(that.interval);
+
+            // pouchdb-lucene is actually ready a few milliseconds after the log message we look for.
+            setTimeout(function(){ that.events.onStarted.fire(that); }, that.options.startupDelay);
+        }
     }
-    fluid.log(stringContent);
 };
 
 gpii.pouch.lucene.generateIniContent = function(that) {
@@ -151,6 +164,7 @@ gpii.pouch.lucene.generateIniContent = function(that) {
 fluid.defaults("gpii.pouch.lucene", {
     gradeNames:     ["fluid.component"],
     port:           9999,
+    pollInterval:   250,
     startupDelay:   250, // How long to wait before reporting that couchdb-lucene is ready.
     dbUrl:          "http://localhost:5986/ul",
     // The settings we will write to couchdb-lucene's configuration file.  Each top level key will become a section
@@ -171,7 +185,8 @@ fluid.defaults("gpii.pouch.lucene", {
     zipPath:     zipPath,
     tmpDir:      tmpDir,
     members: {
-        process: false
+        isStarted: false,
+        process:   false
     },
     events: {
         onStarted:          null,
@@ -201,9 +216,9 @@ fluid.defaults("gpii.pouch.lucene", {
         }
     },
     invokers: {
-        waitForStartup: {
-            funcName: "gpii.pouch.lucene.waitForStartup",
-            args:     ["{that}", "{arguments}.0"]
+        checkForStartupMessage: {
+            funcName: "gpii.pouch.lucene.checkForStartupMessage",
+            args:     ["{that}", "{arguments}.1"] // the callback is passed: event, filename
         },
         respondToProcessTermination: {
             funcName: "gpii.pouch.lucene.respondToProcessTermination",
