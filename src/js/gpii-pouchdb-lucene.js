@@ -95,10 +95,13 @@ gpii.pouch.lucene.init = function (that){
     that.process.stdout.on("data", that.waitForStartup);
 };
 
-gpii.pouch.lucene.respondToProcessTermination = function (that, error) {
-    if (error) {
+// Report any errors if the process ends abnormally.  We do not care about "normal" process kills, only abnormal exits.
+//
+// Thus we look only for output to stderr.
+gpii.pouch.lucene.respondToProcessTermination = function (that, stderr) {
+    if (stderr) {
         // This is not a fail because we want the rest of the shutdown and cleanup to complete
-        fluid.log("Lucene processed stopped with an error:", error);
+        fluid.log(stderr.toString());
     }
 
     that.events.onShutdownComplete.fire();
@@ -206,7 +209,7 @@ fluid.defaults("gpii.pouch.lucene", {
         },
         respondToProcessTermination: {
             funcName: "gpii.pouch.lucene.respondToProcessTermination",
-            args:     ["{that}", "{arguments}.0"]
+            args:     ["{that}", "{arguments}.2"] // the process callback is passed: error, stdout, stderr
         }
     }
 });
