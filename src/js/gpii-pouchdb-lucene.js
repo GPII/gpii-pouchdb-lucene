@@ -92,7 +92,7 @@ gpii.pouch.lucene.init = function (that){
     var script = isWindows ? "": "sh " + path.resolve(that.workingDir, "bin", isWindows ? "run.bat" : "run");
 
     // The unix script is not always executable when it's unpacked.
-    that.process = child_process.exec(script, { cwd: that.workingDir}, that.respondToProcessTermination);
+    that.process = child_process.exec(script, { cwd: that.workingDir, stdio: ["inherit", "inherit", "inherit"]}, that.respondToProcessTermination);
 
     // We have to do this with an interval because all other methods have failed us horribly.  Somehow an initial
     // check is too early, and a check after our process has been created is too late.  We are left with polling...
