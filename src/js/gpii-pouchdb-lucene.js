@@ -87,7 +87,7 @@ gpii.pouch.lucene.init = function (that){
 
     // Start the service using either the batch file on windows, or the shell script on anything else.
     fluid.log("Starting couchdb-lucene...");
-    var script = os.platform().indexOf("win") === 0 ? workingDir + "/bin/run.bat" : "sh bin/run"; // The unix script is not always executable when it's unpacked.
+    var script = os.platform().indexOf("win") === 0 ? workingDir + "\\bin\\run.bat" : "sh bin/run"; // The unix script is not always executable when it's unpacked.
     that.process = child_process.exec(script, { cwd: workingDir}, that.respondToProcessTermination);
 
     that.process.stdout.on("data", that.waitForStartup);
