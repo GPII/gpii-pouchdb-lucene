@@ -87,8 +87,20 @@ gpii.pouch.lucene.init = function (that){
 
     // Start the service using either the batch file on windows, or the shell script on anything else.
     fluid.log("Starting couchdb-lucene...");
-    var script = os.platform().indexOf("win") === 0 ? workingDir + "\\bin\\run.bat" : "sh bin/run"; // The unix script is not always executable when it's unpacked.
-    that.process = child_process.exec(script, { cwd: workingDir}, that.respondToProcessTermination);
+
+    // Windows
+    if (os.platform().indexOf("win") === 0) {
+        that.process = child_process.spawn("cmd.exe ", [workingDir + "\\bin\\run.bat"]);
+    }
+    // Anything else
+    else {
+         // The unix script is not always executable when it's unpacked.
+        that.process = child_process.spawn("sh", [workingDir + "/bin/run"]);
+    }
+
+    that.process.on("close", function () {
+        that.respondToProcessTermination(that.process.stderr);
+    });
 
     that.process.stdout.on("data", that.waitForStartup);
 };
@@ -115,11 +127,12 @@ gpii.pouch.lucene.stopProcess = function (that) {
 // Monitor the process' logs for "Accepting connections" and fire an `onStarted` event when the service is ready to
 // accept connections.
 gpii.pouch.lucene.waitForStartup = function (that, chunk) {
-    if (typeof chunk === "string" && chunk.indexOf("Accepting connections") !== -1) {
+    var stringContent = chunk.toString();
+    if (stringContent.indexOf("Accepting connections") !== -1) {
         // pouchdb-lucene is actually ready a few milliseconds after the log message we look for.
         setTimeout(function(){ that.events.onStarted.fire(that); }, that.options.startupDelay);
     }
-    fluid.log(chunk);
+    fluid.log(stringContent);
 };
 
 gpii.pouch.lucene.generateIniContent = function(that) {
