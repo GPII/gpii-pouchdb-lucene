@@ -11,7 +11,16 @@ You must have both Maven and Java available to install this script.  You must ha
 couchdb-lucene.  At the time I am writing this, Java 1.7 is required in order to be able to build this.
 
 If you require a newer version of couchdb-lucene, you will need to update the configuration variables in `package.json`
-and re-run the `postinstall` task using a command like `npm run postinstall`.
+and re-run `npm install`.
+
+## Windows instructions
+
+On Windows, you must not only install maven and java, but you must:
+
+1. Set the JAVA_HOME environment variable, otherwise the initial build will fail.
+2. Include your maven binary directory in your PATH environment variable, otherwise the initial build will fail.
+3. Inlude your java binary directory in your PATH environment variable, otherwise the launch of the couchdb-lucene process will fail.
+
 
 # How to use this package
 
