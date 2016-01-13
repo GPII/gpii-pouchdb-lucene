@@ -87,10 +87,8 @@ gpii.pouch.lucene.init = function (that){
 
     // Start the service using either the batch file on windows, or the shell script on anything else.
     fluid.log("Starting couchdb-lucene...");
-    var script = os.platform().indexOf("win") === 0 ? "bin/run.bat" : "sh bin/run"; // The unix script is not always executable when it's unpacked.
+    var script = os.platform().indexOf("win") === 0 ? workingDir + "/bin/run.bat" : "sh bin/run"; // The unix script is not always executable when it's unpacked.
     that.process = child_process.exec(script, { cwd: workingDir}, that.respondToProcessTermination);
-
-    that.safetyTimeout = setTimeout(that.destroyOnTimeout, that.options.processTimeout);
 
     that.process.stdout.on("data", that.waitForStartup);
 };
@@ -101,21 +99,14 @@ gpii.pouch.lucene.init = function (that){
 gpii.pouch.lucene.respondToProcessTermination = function (that, stderr) {
     if (stderr) {
         // This is not a fail because we want the rest of the shutdown and cleanup to complete
-        fluid.log(stderr.toString());
+        fluid.log("The Lucene process stopped with an error:\n", stderr.toString());
     }
 
     that.events.onShutdownComplete.fire();
 };
 
-gpii.pouch.lucene.destroyOnTimeout = function (that) {
-    fluid.log("Timeout reached for pouchdb lucene process, stopping it automatically...");
-    that.events.onReadyForShutdown.fire(that);
-};
-
 // Ensure that the service is stopped on component destruction
 gpii.pouch.lucene.stopProcess = function (that) {
-    clearTimeout(that.safetyTimeout);
-
     if (that.process) {
         that.process.kill();
     }
@@ -149,8 +140,6 @@ fluid.defaults("gpii.pouch.lucene", {
     port:           9999,
     startupDelay:   250, // How long to wait before reporting that couchdb-lucene is ready.
     dbUrl:          "http://localhost:5986/ul",
-    // As a safety measure, we will automatically kill our process after `processTimeout` milliseconds.
-    processTimeout: 60000,
     // The settings we will write to couchdb-lucene's configuration file.  Each top level key will become a section
     // entry, as in [lucene].  Each sub key-value pair will become an entry, as in dir=indexes
     iniSettings: {
@@ -202,10 +191,6 @@ fluid.defaults("gpii.pouch.lucene", {
         waitForStartup: {
             funcName: "gpii.pouch.lucene.waitForStartup",
             args:     ["{that}", "{arguments}.0"]
-        },
-        destroyOnTimeout: {
-            funcName: "gpii.pouch.lucene.destroyOnTimeout",
-            args:     ["{that}"]
         },
         respondToProcessTermination: {
             funcName: "gpii.pouch.lucene.respondToProcessTermination",

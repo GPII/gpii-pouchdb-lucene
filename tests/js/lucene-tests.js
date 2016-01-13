@@ -81,25 +81,6 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                             event:    "{testEnvironment}.harness.lucene.events.onShutdownComplete"
                         }
                     ]
-                },
-                {
-                    name: "Test the process timeout...",
-                    type: "test",
-                    sequence: [
-                        // There are no explicit assertions in this test, the fact that the last event is reached is enough.
-                        // We have to let jqUnit know about this or it will throw its own error.
-                        {
-                            funcName: "gpii.pouch.lucene.tests.expectNothing"
-                        },
-                        {
-                            func: "fluid.log",
-                            args: ["pouchdb-lucene should time out after ", "{testEnvironment}.harness.lucene.options.processTimeout", " seconds..."]
-                        },
-                        {
-                            listener: "fluid.identity",
-                            event:    "{testEnvironment}.harness.lucene.events.onReadyForShutdown"
-                        }
-                    ]
                 }
             ]
         }
