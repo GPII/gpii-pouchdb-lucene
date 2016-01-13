@@ -88,19 +88,11 @@ gpii.pouch.lucene.init = function (that){
     // Start the service using either the batch file on windows, or the shell script on anything else.
     fluid.log("Starting couchdb-lucene...");
 
-    // Windows
-    if (os.platform().indexOf("win") === 0) {
-        that.process = child_process.spawn("cmd.exe ", [that.workingDir + "\\bin\\run.bat"], { stdio: ["inherit", "inherit", "inherit"]});
-    }
-    // Anything else
-    else {
-         // The unix script is not always executable when it's unpacked.
-        that.process = child_process.spawn("sh", [that.workingDir + "/bin/run"], { stdio: ["inherit", "inherit", "inherit"]});
-    }
+    var isWindows = os.platform().indexOf("win") === 0;
+    var script = isWindows ? "": "sh " + path.resolve(that.workingDir, "bin", isWindows ? "run.bat" : "run");
 
-    that.process.on("close", function () {
-        that.respondToProcessTermination(that.process.stderr);
-    });
+    // The unix script is not always executable when it's unpacked.
+    that.process = child_process.exec(script, { cwd: that.workingDir}, that.respondToProcessTermination);
 
     // We have to do this with an interval because all other methods have failed us horribly.  Somehow an initial
     // check is too early, and a check after our process has been created is too late.  We are left with polling...
