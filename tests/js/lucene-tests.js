@@ -45,9 +45,6 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                     type: "test",
                     sequence: [
                         {
-                            func: "{basicCouchViewRequest}.send"
-                        },
-                        {
                             event:    "{basicCouchViewRequest}.events.onComplete",
                             listener: "{basicRequest}.send"
                         },
@@ -69,9 +66,6 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                     name: "Testing a sorted search...",
                     type: "test",
                     sequence: [
-                        {
-                            func: "{sortedCouchViewRequest}.send"
-                        },
                         {
                             event:    "{sortedCouchViewRequest}.events.onComplete",
                             listener: "{sortedRequest}.send"
@@ -95,27 +89,11 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
     ],
 
     components: {
-        basicCouchViewRequest: {
-            type: "kettle.test.request.http",
-            options: {
-                path:   "/sample/_design/lucene/by_content",
-                port:   "{testEnvironment}.options.pouchPort",
-                method: "GET"
-            }
-        },
         basicRequest: {
             type: "kettle.test.request.http",
             options: {
                 path:   "/local/sample/_design/lucene/by_content?q=cat",
                 port:   "{testEnvironment}.options.lucenePort",
-                method: "GET"
-            }
-        },
-        sortedCouchViewRequest: {
-            type: "kettle.test.request.http",
-            options: {
-                path:   "/sample/_design/lucene/by_content",
-                port:   "{testEnvironment}.options.pouchPort",
                 method: "GET"
             }
         },
@@ -133,6 +111,7 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
 
 fluid.defaults("gpii.pouch.lucene.tests", {
     gradeNames: ["fluid.test.testEnvironment"],
+    hangWait:   20000,
     pouchPort:  "9998",
     baseUrl:    {
         expander: {
