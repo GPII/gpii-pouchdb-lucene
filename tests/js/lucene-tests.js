@@ -45,7 +45,11 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                     type: "test",
                     sequence: [
                         {
-                            func: "{basicRequest}.send"
+                            func: "{basicCouchViewRequest}.send"
+                        },
+                        {
+                            event:    "{basicCouchViewRequest}.events.onComplete",
+                            listener: "{basicRequest}.send"
                         },
                         {
                             listener: "gpii.pouch.lucene.tests.isSaneResponse",
@@ -66,7 +70,11 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                     type: "test",
                     sequence: [
                         {
-                            func: "{sortedRequest}.send"
+                            func: "{sortedCouchViewRequest}.send"
+                        },
+                        {
+                            event:    "{sortedCouchViewRequest}.events.onComplete",
+                            listener: "{sortedRequest}.send"
                         },
                         {
                             listener: "gpii.pouch.lucene.tests.isSaneResponse",
@@ -87,11 +95,27 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
     ],
 
     components: {
+        basicCouchViewRequest: {
+            type: "kettle.test.request.http",
+            options: {
+                path:   "/sample/_design/lucene/by_content",
+                port:   "{testEnvironment}.options.pouchPort",
+                method: "GET"
+            }
+        },
         basicRequest: {
             type: "kettle.test.request.http",
             options: {
                 path:   "/local/sample/_design/lucene/by_content?q=cat",
                 port:   "{testEnvironment}.options.lucenePort",
+                method: "GET"
+            }
+        },
+        sortedCouchViewRequest: {
+            type: "kettle.test.request.http",
+            options: {
+                path:   "/sample/_design/lucene/by_content",
+                port:   "{testEnvironment}.options.pouchPort",
                 method: "GET"
             }
         },
