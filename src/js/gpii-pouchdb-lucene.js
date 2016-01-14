@@ -88,17 +88,8 @@ gpii.pouch.lucene.init = function (that){
 
     var isWindows = os.platform().indexOf("win") === 0;
 
-    // The stock windows run.bat file redirects stdout to null, and thus prevents us for monitoring the log output.
-    // We copy in our own version.
-    //
-    if (isWindows) {
-        var batContent = fs.readFileSync(path.resolve(basePath, "src/sch/run_without_stdout.bat"),  { encoding: "utf8" });
-        var batFile    = path.resolve(that.workingDir, "bin", "run_with_stdout.bat");
-        fs.writeFileSync(batFile, batContent);
-    }
-
     var shell     = isWindows ? "cmd.exe" : "sh";
-    var script    = path.resolve(path.resolve(that.workingDir, "bin"), isWindows ? "run_with_stdout.bat" : "run");
+    var script    = path.resolve(path.resolve(that.workingDir, "bin"), isWindows ? "run.bat" : "run");
     var args      = isWindows ? ["/c", script] : [script];
 
     that.process = child_process.spawn(shell, args, { cwd: that.workingDir });

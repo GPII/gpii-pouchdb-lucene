@@ -5,12 +5,12 @@
   "main": "index.js",
   "repository": "https://github.com/GPII/gpii-pouchdb-lucene/",
   "config": {
-    "url":      "https://github.com/rnewson/couchdb-lucene.git",
-    "hash":     "ce773de1becf8a400e0344a43cf6eea3134dcc63",
+    "url": "https://github.com/rnewson/couchdb-lucene.git",
+    "hash": "ce773de1becf8a400e0344a43cf6eea3134dcc63",
     "buildDir": "./build",
-    "srcDir":   "./build/couchdb-lucene",
-    "zipPath":  "./build/couchdb-lucene/target/couchdb-lucene-1.0.2-dist.zip",
-    "version":  "1.0.2"
+    "srcDir": "./build/couchdb-lucene",
+    "zipPath": "./build/couchdb-lucene/target/couchdb-lucene-1.0.2-dist.zip",
+    "version": "1.0.2"
   },
   "scripts": {
     "test": "node tests/js/lucene-tests.js",
@@ -25,12 +25,13 @@
     "grunt": "~0.4.4",
     "grunt-contrib-clean": "0.7.0",
     "grunt-contrib-jshint": "~0.9.0",
+    "grunt-copy": "0.1.0",
     "grunt-exec": "0.4.6",
     "grunt-git": "0.3.7",
     "grunt-gpii": "git://github.com/GPII/grunt-gpii.git#58ae055833f437a9e91baedb9f39a22c5fdd727f",
     "grunt-jsonlint": "1.0.4",
     "grunt-shell": "0.6.4",
-    "infusion": "2.0.0-dev.20151113T224751Z.3ba00f2",
+    "infusion": "2.0.0-dev.20151211T025229Z.eabb4fc",
     "request": "2.54.0"
   },
   "devDependencies": {
