@@ -49,8 +49,8 @@ var gpii  = fluid.registerNamespace("gpii");
 var AdmZip        = require("adm-zip");
 var path          = require("path");
 var os            = require("os");
-var fs            = require("fs");
 var child_process = require("child_process");
+var fs            = require("fs");
 
 // There are some constants that we use in `npm` scripts as well as here, they are found in `package.json`.
 var npmSettings = require("../../package.json");
@@ -59,8 +59,6 @@ var npmSettings = require("../../package.json");
 var basePath = fluid.module.resolvePath("%gpii-pouchdb-lucene/");
 var zipPath  = path.resolve(basePath, npmSettings.config.zipPath);
 var tmpDir   = os.tmpdir();
-
-var fs = require("fs");
 
 fluid.registerNamespace("gpii.pouch.lucene");
 gpii.pouch.lucene.init = function (that){
@@ -89,26 +87,33 @@ gpii.pouch.lucene.init = function (that){
     fluid.log("Starting couchdb-lucene...");
 
     var isWindows = os.platform().indexOf("win") === 0;
-    var script = isWindows ? "": "sh " + path.resolve(that.workingDir, "bin", isWindows ? "run.bat" : "run");
 
-    // The unix script is not always executable when it's unpacked.
-    that.process = child_process.exec(script, { cwd: that.workingDir, stdio: ["inherit", "inherit", "inherit"]}, that.respondToProcessTermination);
-
-    // We have to do this with an interval because all other methods have failed us horribly.  Somehow an initial
-    // check is too early, and a check after our process has been created is too late.  We are left with polling...
-    that.interval = setInterval(that.checkForStartupMessage, that.options.pollInterval);
-};
-
-// Report any errors if the process ends abnormally.  We do not care about "normal" process kills, only abnormal exits.
-//
-// Thus we look only for output to stderr.
-gpii.pouch.lucene.respondToProcessTermination = function (that, stderr) {
-    if (stderr) {
-        // This is not a fail because we want the rest of the shutdown and cleanup to complete
-        fluid.log("The Lucene process stopped with an error:\n", stderr.toString());
+    // The stock windows run.bat file redirects stdout to null, and thus prevents us for monitoring the log output.
+    // We copy in our own version.
+    //
+    if (isWindows) {
+        var batContent = fs.readFileSync(path.resolve(basePath, "src/sch/run_without_stdout.bat"),  { encoding: "utf8" });
+        var batFile    = path.resolve(that.workingDir, "bin", "run_with_stdout.bat");
+        fs.writeFileSync(batFile, batContent);
     }
 
-    that.events.onShutdownComplete.fire();
+    var shell     = isWindows ? "cmd.exe" : "sh";
+    var script    = path.resolve(path.resolve(that.workingDir, "bin"), isWindows ? "run_with_stdout.bat" : "run");
+    var args      = isWindows ? ["/c", script] : [script];
+
+    that.process = child_process.spawn(shell, args, { cwd: that.workingDir });
+    that.process.stdout.on("data", that.checkForStartupMessage); // Watch for "accepting connections", which means startup is complete
+
+    // Display the child processes log messages on stdout/stderr.
+    //
+    // We have to pipe the streams created by the child process to their equivalents in `process` because
+    // `process.stdout` and `process.stderr` are write only streams, and cannot be monitored for changes.
+    //
+    // Otherwise we would simply use the `inherit` option when we spawn the process.
+    that.process.stdout.pipe(process.stdout);
+    that.process.stderr.pipe(process.stderr);
+
+    that.process.on("close", that.events.onShutdownComplete.fire);
 };
 
 // Ensure that the service is stopped on component destruction
@@ -118,25 +123,13 @@ gpii.pouch.lucene.stopProcess = function (that) {
     }
 };
 
-// Periodically examine the contents of `that.workingDir` + `logs/couchdb-lucene.log`.
-//
-// We are looking for the text "Accepting connections", if we find it we fire an `onStarted` event.
-//
-// We have to do it this way because:
-//
-// 1. binding a listener to the stdout stream for the process won't work if the message we are looking for has already been sent.
-// 2. monitoring the log directory or file seems to miss the startup on later passes.
-//
-gpii.pouch.lucene.checkForStartupMessage = function (that) {
-    var filePath = path.resolve(that.workingDir, "logs/couchdb-lucene.log");
-    if (fs.existsSync(filePath)) {
-        var stringContent = fs.readFileSync(filePath, {encoding: "utf8"});
-        if (stringContent.indexOf("Accepting connections") !== -1) {
-            clearInterval(that.interval);
+gpii.pouch.lucene.checkForStartupMessage = function (that, data) {
+    if (data && data.toString().indexOf("Accepting connections") !== -1) {
+        // Stop monitoring the log file for changes
+        that.process.stdout.removeListener("data", that.checkForStartupMessage);
 
-            // pouchdb-lucene is actually ready a few milliseconds after the log message we look for.
-            setTimeout(function(){ that.events.onStarted.fire(that); }, that.options.startupDelay);
-        }
+        // pouchdb-lucene is actually ready a few milliseconds after the log message we look for.
+        setTimeout(function(){ that.events.onStarted.fire(that); }, that.options.startupDelay);
     }
 };
 
@@ -177,7 +170,6 @@ fluid.defaults("gpii.pouch.lucene", {
     zipPath:     zipPath,
     tmpDir:      tmpDir,
     members: {
-        isStarted: false,
         process:   false
     },
     events: {
@@ -210,11 +202,7 @@ fluid.defaults("gpii.pouch.lucene", {
     invokers: {
         checkForStartupMessage: {
             funcName: "gpii.pouch.lucene.checkForStartupMessage",
-            args:     ["{that}", "{arguments}.1"] // the callback is passed: event, filename
-        },
-        respondToProcessTermination: {
-            funcName: "gpii.pouch.lucene.respondToProcessTermination",
-            args:     ["{that}", "{arguments}.2"] // the process callback is passed: error, stdout, stderr
+            args:     ["{that}", "{arguments}.0"] // the callback is passed: data
         }
     }
 });
