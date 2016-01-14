@@ -45,8 +45,7 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                     type: "test",
                     sequence: [
                         {
-                            event:    "{basicCouchViewRequest}.events.onComplete",
-                            listener: "{basicRequest}.send"
+                            func: "{basicRequest}.send"
                         },
                         {
                             listener: "gpii.pouch.lucene.tests.isSaneResponse",
@@ -67,8 +66,7 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                     type: "test",
                     sequence: [
                         {
-                            event:    "{sortedCouchViewRequest}.events.onComplete",
-                            listener: "{sortedRequest}.send"
+                            func: "{sortedRequest}.send"
                         },
                         {
                             listener: "gpii.pouch.lucene.tests.isSaneResponse",
