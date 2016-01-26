@@ -78,8 +78,9 @@ gpii.pouch.lucene.generateWindowsCommand = function (that) {
         classpathSegments.push(path.join("lib", segment));
     });
     var classpathString = classpathSegments.join(";");
+    var javaPath = path.join(process.env.JAVA_HOME, "bin", "java");
 
-    return "java -Xmx1g -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
+    return javaPath + " -Xmx1g -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
 };
 
 gpii.pouch.lucene.init = function (that){
