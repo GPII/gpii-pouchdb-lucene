@@ -61,6 +61,27 @@ var zipPath  = path.resolve(basePath, npmSettings.config.zipPath);
 var tmpDir   = os.tmpdir();
 
 fluid.registerNamespace("gpii.pouch.lucene");
+
+// Function to produce a single java command with all required options, to avoid using the batch file.
+//
+// If we don't do this, "our" child process will spawn a separate child process and we will have no way of knowing
+// what process to kill when it's time to shut down.
+//
+gpii.pouch.lucene.generateWindowsCommand = function (that) {
+    var classpathSegments = ["conf"];
+
+    /*
+     for %%i in ("lib\*.jar") do @SET CLASSPATH=!CLASSPATH!;"%%~sdpfi"
+     */
+    var libJarSegments = fs.readdirSync(path.resolve(that.workingDir, "lib"));
+    fluid.each(libJarSegments, function(segment){
+        classpathSegments.push(path.join("lib", segment));
+    });
+    var classpathString = classpathSegments.join(";");
+
+    return "java -Xmx1g -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
+};
+
 gpii.pouch.lucene.init = function (that){
     // Use our ID as a unique identifier so that we can avoid clobbering another instance.
     var outputDir = path.resolve(that.options.tmpDir, that.id);
@@ -89,7 +110,7 @@ gpii.pouch.lucene.init = function (that){
     var isWindows = os.platform().indexOf("win") === 0;
 
     var shell     = isWindows ? "cmd.exe" : "sh";
-    var script    = path.resolve(path.resolve(that.workingDir, "bin"), isWindows ? "run.bat" : "run");
+    var script    = isWindows ? gpii.pouch.lucene.generateWindowsCommand(that) : path.resolve(that.workingDir, "bin/run");
     var args      = isWindows ? ["/c", script] : [script];
 
     that.process = child_process.spawn(shell, args, { cwd: that.workingDir });
