@@ -67,7 +67,7 @@ fluid.registerNamespace("gpii.pouch.lucene");
 // If we don't do this, "our" child process will spawn a separate child process and we will have no way of knowing
 // what process to kill when it's time to shut down.
 //
-gpii.pouch.lucene.generateWindowsCommand = function (that) {
+gpii.pouch.lucene.generateWindowsArgs = function (that) {
     var classpathSegments = ["conf"];
 
     /*
@@ -78,9 +78,12 @@ gpii.pouch.lucene.generateWindowsCommand = function (that) {
         classpathSegments.push(path.join("lib", segment));
     });
     var classpathString = classpathSegments.join(";");
-    var javaPath = path.join(process.env.JAVA_HOME, "bin", "java");
 
-    return javaPath + " -Xmx1g -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
+    return " -Xmx1g -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
+};
+
+gpii.pouch.lucene.getJavaPath = function () {
+    return path.join(process.env.JAVA_HOME, "bin", "java");
 };
 
 gpii.pouch.lucene.init = function (that){
@@ -110,9 +113,8 @@ gpii.pouch.lucene.init = function (that){
 
     var isWindows = os.platform().indexOf("win") === 0;
 
-    var shell     = isWindows ? "cmd.exe" : "sh";
-    var script    = isWindows ? gpii.pouch.lucene.generateWindowsCommand(that) : path.resolve(that.workingDir, "bin/run");
-    var args      = isWindows ? ["/c", script] : [script];
+    var shell     = isWindows ? gpii.pouch.lucene.getJavaPath : "sh";
+    var args      = isWindows ? [gpii.pouch.lucene.generateWindowsArgs(that)] : [path.resolve(that.workingDir, "bin/run")];
 
     that.process = child_process.spawn(shell, args, { cwd: that.workingDir });
     that.process.stdout.on("data", that.checkForStartupMessage); // Watch for "accepting connections", which means startup is complete
