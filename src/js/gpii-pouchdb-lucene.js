@@ -110,7 +110,7 @@ gpii.pouch.lucene.init = function (that){
 // Ensure that the service is stopped on component destruction
 gpii.pouch.lucene.stopProcess = function (that) {
     if (that.process) {
-        that.process.kill();
+        that.process.kill("SIGKILL");
     }
 };
 
