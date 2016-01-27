@@ -37,9 +37,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        copy: {
-            "build/couchdb-lucene/src/main/bin/run.bat": ["src/sh/run_with_stdout.bat"]
-        },
         exec: {
             couchdb_maven_build: {
                 cwd: "<%= pkg.config.srcDir %>",
@@ -50,7 +47,6 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks("grunt-copy");
     grunt.loadNpmTasks("grunt-exec");
     grunt.loadNpmTasks("grunt-git");
     grunt.loadNpmTasks("grunt-gpii");
@@ -63,7 +59,7 @@ module.exports = function (grunt) {
         }
         else {
             grunt.log.writeln("Building couchdb-lucene...");
-            grunt.task.run("clean", "gitclone", "gitcheckout", "copy", "exec");
+            grunt.task.run("clean", "gitclone", "gitcheckout", "exec");
         }
     });
 };

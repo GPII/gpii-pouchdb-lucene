@@ -25,7 +25,6 @@
     "grunt": "~0.4.4",
     "grunt-contrib-clean": "0.7.0",
     "grunt-contrib-jshint": "~0.9.0",
-    "grunt-copy": "0.1.0",
     "grunt-exec": "0.4.6",
     "grunt-git": "0.3.7",
     "grunt-gpii": "git://github.com/GPII/grunt-gpii.git#58ae055833f437a9e91baedb9f39a22c5fdd727f",

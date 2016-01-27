@@ -149,8 +149,7 @@ gpii.pouch.lucene.stopProcess = function (that) {
                          4452
 
                      */
-
-                    var pidExtractionRegex = /.*ProcessId.*([0-9]+).*/m;
+                    var pidExtractionRegex = /.*([0-9]+).*/;
                     var outputString = stdout.toString();
                     var matches = outputString.match(pidExtractionRegex);
 
