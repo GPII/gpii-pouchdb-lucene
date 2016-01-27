@@ -67,7 +67,7 @@ fluid.registerNamespace("gpii.pouch.lucene");
 // If we don't do this, "our" child process will spawn a separate child process and we will have no way of knowing
 // what process to kill when it's time to shut down.
 //
-gpii.pouch.lucene.generateWindowsArgs = function (that) {
+gpii.pouch.lucene.generateWindowsCommandString = function (that) {
     var classpathSegments = ["conf"];
 
     /*
@@ -79,12 +79,12 @@ gpii.pouch.lucene.generateWindowsArgs = function (that) {
     });
     var classpathString = classpathSegments.join(";");
 
-    return " -Xmx1g -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
+    return "java -Xmx1g -Did=\""+ that.id + "\" -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
 };
 
-gpii.pouch.lucene.getJavaPath = function () {
-    return path.join(process.env.JAVA_HOME, "bin", "java");
-};
+//gpii.pouch.lucene.getJavaPath = function () {
+//    return path.join(process.env.JAVA_HOME, "bin", "java");
+//};
 
 gpii.pouch.lucene.init = function (that){
     // Use our ID as a unique identifier so that we can avoid clobbering another instance.
@@ -113,8 +113,8 @@ gpii.pouch.lucene.init = function (that){
 
     var isWindows = os.platform().indexOf("win") === 0;
 
-    var shell     = isWindows ? gpii.pouch.lucene.getJavaPath : "sh";
-    var args      = isWindows ? [gpii.pouch.lucene.generateWindowsArgs(that)] : [path.resolve(that.workingDir, "bin/run")];
+    var shell     = isWindows ? "cmd.exe" : "sh";
+    var args      = isWindows ? ["/c", gpii.pouch.lucene.generateWindowsCommandString(that)] : [path.resolve(that.workingDir, "bin/run")];
 
     that.process = child_process.spawn(shell, args, { cwd: that.workingDir });
     that.process.stdout.on("data", that.checkForStartupMessage); // Watch for "accepting connections", which means startup is complete
@@ -134,7 +134,38 @@ gpii.pouch.lucene.init = function (that){
 // Ensure that the service is stopped on component destruction
 gpii.pouch.lucene.stopProcess = function (that) {
     if (that.process) {
-        that.process.kill("SIGKILL");
+        // Hello, cruel Windows.
+        if (os.platform().indexOf("win") === 0) {
+            var pidLookupCommand = "wmic process where \"name='java.exe' and commandline like '%" + that.id + "%'\" get processid";
+            child_process.exec(pidLookupCommand, function(error, stdout) {
+                if (error) {
+                    fluid.fail("Error looking up Windows process ID:\n" + error);
+                }
+                else {
+                    /*
+                        Extract the PID from output like:
+
+                         ProcessId
+                         4452
+
+                     */
+
+                    var pidExtractionRegex = /.*ProcessId.*([0-9]+).*/m;
+                    var outputString = stdout.toString();
+                    var matches = outputString.match(pidExtractionRegex);
+
+                    if (matches) {
+                        process.kill(matches[0], "SIGKILL");
+                    }
+                    else {
+                        fluid.fail("Unable to find process ID in command output:\n" + outputString);
+                    }
+                }
+            });
+        }
+        else {
+            that.process.kill();
+        }
     }
 };
 
