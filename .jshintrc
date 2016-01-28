@@ -24,9 +24,5 @@
 
     "maxerr": 1000,
 
-    "node": true,
-
-    "globals": {
-        "fluid_1_5": true
-    }
+    "node": true
 }
