@@ -16,7 +16,7 @@ kettle.loadTestingSupport();
 
 fluid.registerNamespace("gpii.pouch.lucene.tests");
 
-gpii.pouch.lucene.tests.expectNothing = function (){
+gpii.pouch.lucene.tests.expectNothing = function () {
     jqUnit.expect(0);
 };
 

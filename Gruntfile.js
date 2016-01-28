@@ -11,7 +11,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: pkg,
         jshint: {
-            src: ["./**/*.js"],
+            src: ["./src/**/*.js", "./tests/js/**/*.js"],
             buildScripts: ["Gruntfile.js"],
             options: {
                 jshintrc: true
@@ -49,11 +49,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-exec");
     grunt.loadNpmTasks("grunt-git");
-    grunt.loadNpmTasks("grunt-gpii");
     grunt.loadNpmTasks("grunt-jsonlint");
     grunt.loadNpmTasks("grunt-shell");
 
-    grunt.task.registerTask("build_couchdb_lucene", "Builds couchdb-lucene if needed.  Remove build/couchdb-lucene to force a fresh build.", function(){
+    grunt.registerTask("lint", "Apply jshint and jsonlint", ["jshint", "jsonlint"]);
+
+    grunt.task.registerTask("build_couchdb_lucene", "Builds couchdb-lucene if needed.  Remove build/couchdb-lucene to force a fresh build.", function () {
         if (grunt.file.exists(pkg.config.zipPath)) {
             grunt.log.writeln("couchdb-lucene has already been built, skipping...");
         }

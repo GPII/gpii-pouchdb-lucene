@@ -74,15 +74,15 @@ gpii.pouch.lucene.generateWindowsCommandString = function (that) {
      for %%i in ("lib\*.jar") do @SET CLASSPATH=!CLASSPATH!;"%%~sdpfi"
      */
     var libJarSegments = fs.readdirSync(path.resolve(that.workingDir, "lib"));
-    fluid.each(libJarSegments, function(segment){
+    fluid.each(libJarSegments, function (segment) {
         classpathSegments.push(path.join("lib", segment));
     });
     var classpathString = classpathSegments.join(";");
 
-    return "java -Xmx1g -Did=\""+ that.id + "\" -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
+    return "java -Xmx1g -Did=\"" + that.id + "\" -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
 };
 
-gpii.pouch.lucene.init = function (that){
+gpii.pouch.lucene.init = function (that) {
     // Use our ID as a unique identifier so that we can avoid clobbering another instance.
     var outputDir = path.resolve(that.options.tmpDir, that.id);
 
@@ -133,7 +133,7 @@ gpii.pouch.lucene.stopProcess = function (that) {
         // Hello, cruel Windows.
         if (os.platform().indexOf("win") === 0) {
             var pidLookupCommand = "wmic process where \"name='java.exe' and commandline like '%" + that.id + "%'\" get processid";
-            child_process.exec(pidLookupCommand, function(error, stdout) {
+            child_process.exec(pidLookupCommand, function (error, stdout) {
                 if (error) {
                     fluid.fail("Error looking up Windows process ID:\n" + error);
                 }
@@ -170,16 +170,16 @@ gpii.pouch.lucene.checkForStartupMessage = function (that, data) {
         that.process.stdout.removeListener("data", that.checkForStartupMessage);
 
         // pouchdb-lucene is actually ready a few milliseconds after the log message we look for.
-        setTimeout(function(){ that.events.onStarted.fire(that); }, that.options.startupDelay);
+        setTimeout(function () { that.events.onStarted.fire(that); }, that.options.startupDelay);
     }
 };
 
-gpii.pouch.lucene.generateIniContent = function(that) {
+gpii.pouch.lucene.generateIniContent = function (that) {
     var output = "";
-    fluid.each(that.options.iniSettings, function(settings, section){
+    fluid.each(that.options.iniSettings, function (settings, section) {
         output += "\n[" + section + "]\n";
 
-        fluid.each(settings, function (value, key){
+        fluid.each(settings, function (value, key) {
             output += key + "=" + value + "\n";
         });
     });
