@@ -131,6 +131,7 @@ gpii.pouch.lucene.init = function (that) {
 // A function to find and stop the correct Windows process.  Uses `wmic` to look for `tag` in the command line
 // arguments.  Best practice is to include the component ID in the command line arguments and then search for that.
 //
+fluid.registerNamespace("gpii.windows");
 gpii.windows.stopNamedAndTaggedProcess = function (processName, processTag) {
     var pidLookupCommand = "wmic process where \"name='" + processName + "' and commandline like '%" + processTag + "%'\" get processid";
     child_process.exec(pidLookupCommand, function (error, stdout) {
