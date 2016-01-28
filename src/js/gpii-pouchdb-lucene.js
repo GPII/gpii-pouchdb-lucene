@@ -127,36 +127,43 @@ gpii.pouch.lucene.init = function (that) {
     that.process.on("close", that.events.onShutdownComplete.fire);
 };
 
-// Ensure that the service is stopped on component destruction
+
+// A function to find and stop the correct Windows process.  Uses `wmic` to look for `tag` in the command line
+// arguments.  Best practice is to include the component ID in the command line arguments and then search for that.
+//
+gpii.windows.stopNamedAndTaggedProcess = function (processName, processTag) {
+    var pidLookupCommand = "wmic process where \"name='" + processName + "' and commandline like '%" + processTag + "%'\" get processid";
+    child_process.exec(pidLookupCommand, function (error, stdout) {
+        if (error) {
+            fluid.fail("Error looking up Windows process ID:\n" + error);
+        }
+        else {
+            /*
+             Extract the PID from output like:
+
+             ProcessId
+             4452
+
+             */
+            var pidExtractionRegex = /.*([0-9]+).*/;
+            var outputString = stdout.toString();
+            var matches = outputString.match(pidExtractionRegex);
+
+            if (matches) {
+                process.kill(matches[0], "SIGKILL");
+            }
+            else {
+                fluid.fail("Unable to find process ID in command output:\n" + outputString);
+            }
+        }
+    });
+};
+
 gpii.pouch.lucene.stopProcess = function (that) {
     if (that.process) {
         // Hello, cruel Windows.
         if (os.platform().indexOf("win") === 0) {
-            var pidLookupCommand = "wmic process where \"name='java.exe' and commandline like '%" + that.id + "%'\" get processid";
-            child_process.exec(pidLookupCommand, function (error, stdout) {
-                if (error) {
-                    fluid.fail("Error looking up Windows process ID:\n" + error);
-                }
-                else {
-                    /*
-                        Extract the PID from output like:
-
-                         ProcessId
-                         4452
-
-                     */
-                    var pidExtractionRegex = /.*([0-9]+).*/;
-                    var outputString = stdout.toString();
-                    var matches = outputString.match(pidExtractionRegex);
-
-                    if (matches) {
-                        process.kill(matches[0], "SIGKILL");
-                    }
-                    else {
-                        fluid.fail("Unable to find process ID in command output:\n" + outputString);
-                    }
-                }
-            });
+            gpii.windows.stopNamedAndTaggedProcess("java.exe", that.id);
         }
         else {
             that.process.kill();
