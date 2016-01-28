@@ -1,6 +1,6 @@
 // Sanity checks for search integration.  As these are read only, we use a single instance for all tests.
 "use strict";
-var fluid = fluid || require("infusion");
+var fluid = require("infusion");
 fluid.loadTestingSupport();
 fluid.setLogging(true);
 

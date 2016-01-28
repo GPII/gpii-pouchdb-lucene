@@ -43,7 +43,7 @@
 // package.
 //
 "use strict";
-var fluid = fluid || require("infusion");
+var fluid = require("infusion");
 var gpii  = fluid.registerNamespace("gpii");
 
 var AdmZip        = require("adm-zip");
@@ -81,10 +81,6 @@ gpii.pouch.lucene.generateWindowsCommandString = function (that) {
 
     return "java -Xmx1g -Did=\""+ that.id + "\" -cp " + classpathString + " com.github.rnewson.couchdb.lucene.Main";
 };
-
-//gpii.pouch.lucene.getJavaPath = function () {
-//    return path.join(process.env.JAVA_HOME, "bin", "java");
-//};
 
 gpii.pouch.lucene.init = function (that){
     // Use our ID as a unique identifier so that we can avoid clobbering another instance.
