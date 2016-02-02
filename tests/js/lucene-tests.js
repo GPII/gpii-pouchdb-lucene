@@ -15,6 +15,8 @@ var kettle = require("kettle");
 kettle.loadTestingSupport();
 
 fluid.registerNamespace("gpii.pouch.lucene.tests");
+require("gpii-express");
+gpii.express.loadTestingSupport();
 
 gpii.pouch.lucene.tests.expectNothing = function () {
     jqUnit.expect(0);

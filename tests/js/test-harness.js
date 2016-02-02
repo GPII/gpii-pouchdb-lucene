@@ -4,8 +4,7 @@ var fluid = require("infusion");
 
 require("../../index");
 
-var express = require("gpii-express");
-express.loadTestingSupport();
+require("gpii-express");
 
 require("gpii-pouch");
 
