@@ -14,27 +14,26 @@
   },
   "scripts": {
     "test": "node tests/js/lucene-tests.js",
-    "postinstall": "grunt dedupe-infusion && grunt build_couchdb_lucene"
+    "postinstall": "grunt build_couchdb_lucene"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "^0.4.7",
-    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express#dcb5648aeeef28594dddf6870245f0dc2df682a8",
+    "gpii-express": "git://github.com/GPII/gpii-express.git#792129dbb0e368f02ae21ac987c8c9b1fca93eb6",
     "gpii-pouch": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#f56fca6cf89c6092a37169504c44b0aedf12f580",
     "grunt": "~0.4.4",
     "grunt-contrib-clean": "0.7.0",
-    "grunt-contrib-jshint": "~0.9.0",
     "grunt-exec": "0.4.6",
     "grunt-git": "0.3.7",
-    "grunt-gpii": "git://github.com/GPII/grunt-gpii.git#58ae055833f437a9e91baedb9f39a22c5fdd727f",
-    "grunt-jsonlint": "1.0.4",
-    "grunt-shell": "0.6.4",
     "infusion": "2.0.0-dev.20151211T025229Z.eabb4fc",
     "request": "2.54.0"
   },
   "devDependencies": {
+    "grunt-contrib-jshint": "~0.9.0",
+    "grunt-jsonlint": "1.0.4",
+    "grunt-shell": "0.6.4",
     "node-jqunit": "~1.1.3",
-    "kettle": "git://github.com/amb26/kettle.git#c7207e93518b3c61cb6e923f22b1e26f2c365f64"
+    "kettle": "git://github.com/amb26/kettle.git#2517cc1d9d047d58aef70db48d1580da718ffc16"
   }
 }
