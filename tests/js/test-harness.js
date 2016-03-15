@@ -6,7 +6,7 @@ require("../../index");
 
 require("gpii-express");
 
-require("gpii-pouch");
+require("gpii-pouchdb");
 
 var path = require("path");
 var sampleDataFile = path.resolve(__dirname, "../data/sample.json");
