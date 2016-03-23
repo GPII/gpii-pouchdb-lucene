@@ -20,8 +20,8 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "^0.4.7",
-    "gpii-express": "git://github.com/GPII/gpii-express.git#2f55451a019202b7abe7f5ec794a85933256f52a",
-    "gpii-pouchdb": "git://github.com/GPII/gpii-pouchdb.git#5602e31b128d056e9d0cbc2e2ef6b9e4739c91f3",
+    "gpii-express": "git://github.com/GPII/gpii-express.git#59e852d74d5a198bb96190d47073b97fff224fd9",
+    "gpii-pouchdb": "git://github.com/GPII/gpii-pouchdb.git#0d2878d35b4100a1b90277e903467e6b9a18cffe",
     "grunt": "~0.4.4",
     "grunt-contrib-clean": "0.7.0",
     "grunt-exec": "0.4.6",
