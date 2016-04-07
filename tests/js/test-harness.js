@@ -6,7 +6,7 @@ require("../../index");
 
 require("gpii-express");
 
-require("gpii-pouch");
+require("gpii-pouchdb");
 
 var path = require("path");
 var sampleDataFile = path.resolve(__dirname, "../data/sample.json");
@@ -33,16 +33,8 @@ fluid.defaults("gpii.pouch.lucene.tests.harness", {
         pouch: {
             type: "gpii.express",
             options: {
-                config: {
-                    express: {
-                        port: "{harness}.options.pouchPort",
-                        baseUrl: "{harness}.options.baseUrl"
-                    },
-                    app: {
-                        name: "Pouch Test Server",
-                        url:  "{harness}.options.baseUrl"
-                    }
-                },
+                port: "{harness}.options.pouchPort",
+                baseUrl: "{harness}.options.baseUrl",
                 listeners: {
                     onStarted: "{harness}.events.onExpressStarted.fire"
                 },
