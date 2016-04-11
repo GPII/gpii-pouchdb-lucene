@@ -7,7 +7,7 @@ require("../lib/superset");
 
 fluid.registerNamespace("gpii.pouch.lucene.tests");
 gpii.pouch.lucene.tests.isSaneResponse = function (response, body, statusCode, expected) {
-    gpii.express.tests.helpers.isSaneResponse(response, body, statusCode);
+    gpii.tests.express.helpers.isSaneResponse(response, body, statusCode);
 
     if (expected) {
         var jsonData = typeof body === "string" ? JSON.parse(body) : body;

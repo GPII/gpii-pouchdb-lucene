@@ -17,7 +17,7 @@ gpii.express.loadTestingSupport();
 
 
 fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
-    gradeNames: ["gpii.express.tests.caseHolder"],
+    gradeNames: ["gpii.tests.express.caseHolder"],
     sequenceEnd: [
         {
             func: "{testEnvironment}.harness.lucene.events.onReadyForShutdown.fire"
