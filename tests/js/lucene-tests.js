@@ -16,8 +16,8 @@ require("gpii-express");
 gpii.express.loadTestingSupport();
 
 
-fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
-    gradeNames: ["gpii.tests.express.caseHolder"],
+fluid.defaults("gpii.tests.pouch.lucene.caseHolder", {
+    gradeNames: ["gpii.test.express.caseHolder"],
     sequenceEnd: [
         {
             func: "{testEnvironment}.harness.lucene.events.onReadyForShutdown.fire"
@@ -43,6 +43,7 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
     // Our raw test cases, that will have `sequenceStart` prepended before they are run.
     rawModules: [
         {
+            name: "Testing pouchdb-lucene...",
             tests: [
                 {
                     //name: "Testing a basic search...",
@@ -53,7 +54,7 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                             func: "{basicRequest}.send"
                         },
                         {
-                            listener: "gpii.pouch.lucene.tests.isSaneResponse",
+                            listener: "gpii.test.pouch.lucene.isSaneResponse",
                             event:    "{basicRequest}.events.onComplete",
                             args:     ["{basicRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.basic"]
                         }
@@ -67,7 +68,7 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
                             func: "{sortedRequest}.send"
                         },
                         {
-                            listener: "gpii.pouch.lucene.tests.isSaneResponse",
+                            listener: "gpii.test.pouch.lucene.isSaneResponse",
                             event:    "{sortedRequest}.events.onComplete",
                             args:     ["{sortedRequest}.nativeResponse", "{arguments}.0", 200, "{testCaseHolder}.options.expected.sorted"]
                         }
@@ -98,7 +99,7 @@ fluid.defaults("gpii.pouch.lucene.tests.caseHolder", {
 });
 
 
-fluid.defaults("gpii.pouch.lucene.tests", {
+fluid.defaults("gpii.tests.pouch.lucene", {
     gradeNames: ["fluid.test.testEnvironment"],
     hangWait:   20000,
     pouchPort:  "9998",
@@ -115,7 +116,7 @@ fluid.defaults("gpii.pouch.lucene.tests", {
     },
     components: {
         harness: {
-            type:          "gpii.pouch.lucene.tests.harness",
+            type:          "gpii.tests.pouch.lucene.harness",
             createOnEvent: "constructServer",
             options: {
                 pouchPort:  "{testEnvironment}.options.pouchPort",
@@ -129,9 +130,9 @@ fluid.defaults("gpii.pouch.lucene.tests", {
             }
         },
         testCaseHolder: {
-            type: "gpii.pouch.lucene.tests.caseHolder"
+            type: "gpii.tests.pouch.lucene.caseHolder"
         }
     }
 });
 
-gpii.pouch.lucene.tests();
+fluid.test.runTests("gpii.tests.pouch.lucene");

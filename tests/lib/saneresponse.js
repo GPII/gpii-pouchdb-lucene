@@ -5,12 +5,12 @@ var gpii   = fluid.registerNamespace("gpii");
 
 require("../lib/superset");
 
-fluid.registerNamespace("gpii.pouch.lucene.tests");
-gpii.pouch.lucene.tests.isSaneResponse = function (response, body, statusCode, expected) {
-    gpii.tests.express.helpers.isSaneResponse(response, body, statusCode);
+fluid.registerNamespace("gpii.tests.pouch.lucene");
+gpii.test.pouch.lucene.isSaneResponse = function (response, body, statusCode, expected) {
+    gpii.test.express.helpers.isSaneResponse(response, body, statusCode);
 
     if (expected) {
         var jsonData = typeof body === "string" ? JSON.parse(body) : body;
-        gpii.pouch.lucene.tests.assertSuperset("The response should be as expected...", expected, jsonData);
+        gpii.test.pouch.lucene.assertSuperset("The response should be as expected...", expected, jsonData);
     }
 };

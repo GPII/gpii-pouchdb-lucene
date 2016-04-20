@@ -6,7 +6,7 @@ var gpii = fluid.registerNamespace("gpii");
 
 require("./test-harness");
 
-gpii.pouch.lucene.tests.harness({
+gpii.tests.pouch.lucene.harness({
     pouchPort:  "9999",
     baseUrl:    "http://localhost:9999", // TODO: Convert these to use template strings
     lucenePort: "3599"

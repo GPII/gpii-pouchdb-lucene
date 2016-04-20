@@ -20,13 +20,13 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "^0.4.7",
-    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#05fb6c9559891f3cbab94ee7f018c0c9847b25fe",
-    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#6db8408b88e61b6517c078b659141e409047551d",
+    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#30135c97b908acfd83cba2844588ffb1ff18d9a4",
+    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#bd809d175f2ed6feba793d41323de317a5a737a5",
     "grunt": "~0.4.4",
     "grunt-contrib-clean": "0.7.0",
     "grunt-exec": "0.4.6",
     "grunt-git": "0.3.7",
-    "infusion": "2.0.0-dev.20151211T025229Z.eabb4fc",
+    "infusion": "2.0.0-dev.20160309T145652Z.9f515ec",
     "request": "2.54.0"
   },
   "devDependencies": {

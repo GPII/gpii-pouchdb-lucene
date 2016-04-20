@@ -14,8 +14,8 @@ var gpii  = fluid.registerNamespace("gpii");
 
 var jqUnit = require("node-jqunit");
 
-fluid.registerNamespace("gpii.pouch.lucene.tests");
-gpii.pouch.lucene.tests.assertSuperset = function (message, expected, actual) {
+fluid.registerNamespace("gpii.test.pouch.lucene");
+gpii.test.pouch.lucene.assertSuperset = function (message, expected, actual) {
     // We use the change applier to detect changes.  If we attempt to apply `expected` to `actual`, and there are no
     // changes, it means that `actual` must be a superset of `expected`.
     //
