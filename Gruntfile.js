@@ -40,8 +40,7 @@ module.exports = function (grunt) {
         exec: {
             couchdb_maven_build: {
                 cwd: "<%= pkg.config.srcDir %>",
-                cmd: "mvn -D maven.test.skip=true",
-                exitCode: 0
+                cmd: "mvn -q -D maven.test.skip=true"
             }
         }
     });

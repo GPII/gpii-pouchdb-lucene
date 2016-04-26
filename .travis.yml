@@ -13,3 +13,7 @@ install:
 script:
   - nvm use $NODE_VERSION
   - npm test
+
+cache:
+  directories:
+  - $HOME/.m2
