@@ -1,6 +1,15 @@
-language: node_js
+language: java
+
 jdk:
   - oraclejdk8
-cache:
-  directories:
-  - $HOME/.m2
+
+env:
+  - NODE_VERSION=0.12
+
+install:
+  - nvm install $NODE_VERSION
+  - npm install
+
+script:
+  - nvm use $NODE_VERSION
+  - npm test
