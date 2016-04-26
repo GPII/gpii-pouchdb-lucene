@@ -1,5 +1,9 @@
 // Sanity checks for search integration.  As these are read only, we use a single instance for all tests.
 "use strict";
+
+var events = require("events");
+events.EventEmitter.defaultMaxListeners = 100;
+
 var fluid = require("infusion");
 fluid.loadTestingSupport();
 fluid.setLogging(true);
