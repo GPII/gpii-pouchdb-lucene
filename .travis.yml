@@ -4,7 +4,7 @@ jdk:
   - oraclejdk8
 
 env:
-  - NODE_VERSION=0.12 JAVA_OPTS="$JAVA_OPTS -Djava.net.preferIPv4Stack=true"
+  - NODE_VERSION=0.12 JAVA_OPTS="-Djava.net.preferIPv4Stack=true"
 
 install:
   - nvm install $NODE_VERSION
