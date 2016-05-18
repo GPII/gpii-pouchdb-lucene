@@ -20,13 +20,13 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "^0.4.7",
-    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#1c821135fb89596b1cf5bbd398bb2ad50e874d79",
-    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#c65f0f4d1459950bdc56be39b01af43ab4894d7b",
+    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#d3a21a9247a30a9bd9d0e8a3b6ffa9152a572b03",
+    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#280291cc1d598e5f2626461659f86193d78ef862",
     "grunt": "0.4.5",
     "grunt-contrib-clean": "0.7.0",
     "grunt-exec": "0.4.6",
     "grunt-git": "0.3.7",
-    "infusion": "git://github.com/amb26/infusion.git#81ef49cdc0e78a96549c5195d9ffd42604087096",
+    "infusion": "git://github.com/amb26/infusion.git#3c67d2d3d2fafbe6c21a6e9828be438eebe67299",
     "request": "2.54.0"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     "grunt-contrib-jshint": "~0.9.0",
     "grunt-jsonlint": "1.0.4",
     "grunt-shell": "0.6.4",
-    "kettle": "git://github.com/amb26/kettle.git#2517cc1d9d047d58aef70db48d1580da718ffc16",
+    "kettle": "git://github.com/amb26/kettle.git#d808f3d5e326265aab9aaa1014703d75fa8ef0d0",
     "node-jqunit": "~1.1.3"
   }
 }

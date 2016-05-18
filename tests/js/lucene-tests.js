@@ -115,20 +115,25 @@ fluid.defaults("gpii.tests.pouch.lucene", {
     },
     lucenePort: "3598",
     events: {
-        constructServer: null,
-        onStarted:       null
+        constructFixtures: null,
+        onHarnessReady: null,
+        onFixturesConstructed: {
+            events: {
+                onHarnessReady: "onHarnessReady"
+            }
+        }
     },
     components: {
         harness: {
             type:          "gpii.tests.pouch.lucene.harness",
-            createOnEvent: "constructServer",
+            createOnEvent: "constructFixtures",
             options: {
                 pouchPort:  "{testEnvironment}.options.pouchPort",
                 baseUrl:    "{testEnvironment}.options.baseUrl",
                 lucenePort: "{testEnvironment}.options.lucenePort",
                 listeners: {
                     "onStarted.notifyParent": {
-                        func: "{testEnvironment}.events.onStarted.fire"
+                        func: "{testEnvironment}.events.onHarnessReady.fire"
                     }
                 }
             }
