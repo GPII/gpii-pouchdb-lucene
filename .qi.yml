@@ -13,6 +13,7 @@ software_stack: nodejs
 software_stack_version: 4.3.1
 
 setup:
+  - sudo yum -y install maven
   - npm install
 
 commands:
