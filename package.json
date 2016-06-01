@@ -13,7 +13,7 @@
     "version": "1.0.2"
   },
   "scripts": {
-    "test": "node tests/js/lucene-tests.js",
+    "test": "node node_modules/istanbul/lib/cli.js cover tests/js/lucene-tests.js",
     "postinstall": "grunt build_couchdb_lucene"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
@@ -34,6 +34,7 @@
     "grunt-contrib-jshint": "~0.9.0",
     "grunt-jsonlint": "1.0.4",
     "grunt-shell": "0.6.4",
+    "istanbul": "0.4.3",
     "kettle": "git://github.com/amb26/kettle.git#d808f3d5e326265aab9aaa1014703d75fa8ef0d0",
     "node-jqunit": "~1.1.3"
   }
