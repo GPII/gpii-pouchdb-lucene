@@ -199,7 +199,7 @@ fluid.defaults("gpii.pouch.lucene", {
     gradeNames:     ["fluid.component"],
     port:           9999,
     pollInterval:   250,
-    startupDelay:   250, // How long to wait before reporting that couchdb-lucene is ready.
+    startupDelay:   2500, // How long to wait before reporting that couchdb-lucene is ready. TODO: Figure a better way to handle this.
     dbUrl:          "http://localhost:5986/ul",
     // The settings we will write to couchdb-lucene's configuration file.  Each top level key will become a section
     // entry, as in [lucene].  Each sub key-value pair will become an entry, as in dir=indexes

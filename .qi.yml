@@ -14,7 +14,7 @@ software_stack_version: 4.3.1
 
 setup:
   - sudo yum -y install java-1.8.0-openjdk-devel.x86_64
-  - sudo yum -y install maven
+  - sudo yum -y install maven.noarch
   - npm install
 
 commands:
