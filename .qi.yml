@@ -16,7 +16,6 @@ setup:
   - sudo yum -y install java-1.8.0-openjdk-devel.x86_64
   - sudo yum -y install maven.noarch
   - npm install
-  - export TMPDIR=/tmp
 
 commands:
-  - npm test
+  - TMPDIR=/tmp npm test
