@@ -84,7 +84,7 @@ cat <<-'EOF' >/home/vagrant/playbook.yml
   vars:
     nodejs_app_name: "{{ app_name }}"
     nodejs_version: "{{ software_stack_version }}"
-    #nodejs_app_commands: "{{ setup }}"
+    nodejs_app_commands: "{{ setup }}"
     nodejs_app_start_script: "{{ app_start_script }}"
     nodejs_app_tcp_port: "{{ app_tcp_port }}"
     nodejs_app_git_clone: false
