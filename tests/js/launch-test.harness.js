@@ -1,4 +1,5 @@
 // A convenience script to start up a copy of the test harness for manual QA.
+"use strict";
 var fluid = require("infusion");
 fluid.setLogging(true);
 
@@ -11,3 +12,4 @@ gpii.tests.pouch.lucene.harness({
     baseUrl:    "http://localhost:9999", // TODO: Convert these to use template strings
     lucenePort: "3599"
 });
+
