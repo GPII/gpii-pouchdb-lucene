@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "node node_modules/istanbul/lib/cli.js cover tests/js/lucene-tests.js",
-    "pretest": "grunt build_couchdb_lucene"
+    "postinstall": "grunt build_couchdb_lucene"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "BSD-3-Clause",
