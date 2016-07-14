@@ -103,7 +103,7 @@ fluid.defaults("gpii.tests.pouch.lucene.caseHolder", {
 });
 
 
-fluid.defaults("gpii.tests.pouch.lucene", {
+fluid.defaults("gpii.tests.pouch.lucene.environment", {
     gradeNames: ["fluid.test.testEnvironment"],
     hangWait:   20000,
     pouchPort:  "9998",
@@ -144,4 +144,27 @@ fluid.defaults("gpii.tests.pouch.lucene", {
     }
 });
 
-fluid.test.runTests("gpii.tests.pouch.lucene");
+// Run multiple iterations to confirm that our startup /teardown cycle is working correctly.
+for (var iteration = 1; iteration <= 5; iteration++) {
+    var caseHolderGrade = "gpii.tests.pouch.lucene.caseHolder" + iteration;
+    fluid.defaults(caseHolderGrade, {
+        gradeNames: ["gpii.tests.pouch.lucene.caseHolder"],
+        distributeOptions: {
+            record: "Testing lucene search integration (iteration " + iteration + ")...",
+            target: "{that}.options.rawModules.0.name"
+        }
+    });
+
+    var environmentGrade = "gpii.tests.pouch.lucene.environment" + iteration;
+    fluid.defaults(environmentGrade, {
+        gradeNames: "gpii.tests.pouch.lucene.environment",
+        components: {
+            testCaseHolder: {
+                type: caseHolderGrade
+            }
+        }
+    });
+
+    fluid.test.runTests(environmentGrade);
+}
+
