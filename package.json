@@ -19,22 +19,22 @@
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "adm-zip": "^0.4.7",
-    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#84279ed065b0429eb71b7f13a17916353362263a",
-    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#a0f094290fa931d071cb761d1d44b9c410b61f3d",
+    "adm-zip": "0.4.7",
+    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#2f224862730bca57fa1f036f24f26e1d43748419",
+    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#d57786b87542785f77162c689058e0e70fc20184",
     "grunt": "1.0.1",
     "grunt-cli": "1.2.0",
     "grunt-contrib-clean": "1.0.0",
     "grunt-git": "1.0.0",
     "grunt-shell": "1.3.0",
     "infusion": "2.0.0-dev.20160519T222603Z.754d2c6",
-    "request": "2.54.0"
+    "request": "2.74.0"
   },
   "devDependencies": {
-    "grunt-eslint": "18.1.0",
-    "grunt-jsonlint": "1.0.4",
-    "istanbul": "0.4.3",
-    "kettle": "git://github.com/amb26/kettle.git#d808f3d5e326265aab9aaa1014703d75fa8ef0d0",
-    "node-jqunit": "~1.1.3"
+    "grunt-eslint": "19.0.0",
+    "grunt-jsonlint": "1.1.0",
+    "istanbul": "0.4.4",
+    "kettle": "1.1.0",
+    "node-jqunit": "1.1.4"
   }
 }
