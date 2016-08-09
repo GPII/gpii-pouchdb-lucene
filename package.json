@@ -31,7 +31,7 @@
     "request": "2.74.0"
   },
   "devDependencies": {
-    "grunt-eslint": "19.0.0",
+    "fluid-grunt-eslint": "18.1.1",
     "grunt-jsonlint": "1.1.0",
     "istanbul": "0.4.4",
     "kettle": "1.1.0",

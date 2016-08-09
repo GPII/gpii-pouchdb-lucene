@@ -46,7 +46,7 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks("grunt-contrib-clean");
-    grunt.loadNpmTasks("grunt-eslint");
+    grunt.loadNpmTasks("fluid-grunt-eslint");
     grunt.loadNpmTasks("grunt-git");
     grunt.loadNpmTasks("grunt-jsonlint");
     grunt.loadNpmTasks("grunt-shell");
