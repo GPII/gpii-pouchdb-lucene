@@ -20,20 +20,20 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "0.4.7",
-    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#bf17c0517d10902f61aa2ba491f29eaef49cf1be",
-    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#bc9c373cef622a3947f1a5b11a9c8e8666b9b5b6",
+    "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#baa1558d22ee7abcb6d6b6410af7cc95693f1b80",
+    "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#b5a4b2bd94cc652de7b564b3ec775b4894e824fc",
     "grunt": "1.0.1",
     "grunt-cli": "1.2.0",
     "grunt-contrib-clean": "1.0.0",
     "grunt-git": "1.0.0",
-    "grunt-shell": "1.3.0",
+    "grunt-shell": "1.3.1",
     "infusion": "2.0.0-dev.20160519T222603Z.754d2c6",
     "request": "2.74.0"
   },
   "devDependencies": {
-    "fluid-grunt-eslint": "18.1.1",
+    "fluid-grunt-eslint": "18.1.2",
     "grunt-jsonlint": "1.1.0",
-    "istanbul": "0.4.4",
+    "istanbul": "0.4.5",
     "kettle": "1.1.0",
     "node-jqunit": "1.1.4"
   }
