@@ -40,7 +40,7 @@ fluid.defaults("gpii.tests.pouch.lucene.harness", {
                 },
                 components: {
                     pouch: {
-                        type: "gpii.pouch",
+                        type: "gpii.pouch.express",
                         options: {
                             path: "/",
                             databases: {
