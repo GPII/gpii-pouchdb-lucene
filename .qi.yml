@@ -5,7 +5,7 @@ env_runtime: linux-desktop
 apps:
   - app_name: gpii-pouchdb-lucene
     git_repository: https://github.com/the-t-in-rtf/gpii-pouchdb-lucene.git
-    git_branch: GPII-1985
+    git_branch: GPII-1785
     software_stack: nodejs
     folder:
       dest: /app/gpii-pouchdb-lucene
