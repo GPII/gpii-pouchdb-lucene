@@ -10,6 +10,8 @@ fluid.setLogging(true);
 
 require("gpii-launcher");
 
+require("../");
+
 var child_process = require("child_process");
 var fs            = require("fs");
 var rimraf        = require("rimraf");
