@@ -52,12 +52,13 @@ var os            = require("os");
 var child_process = require("child_process");
 var fs            = require("fs");
 
-// There are some constants that we use in `npm` scripts as well as here, they are found in `package.json`.
-var npmSettings = require("../../package.json");
+// require("../../");
+
+// There are some constants that we use in the build and here as well.
+var sharedSettings = fluid.require("%gpii-pouchdb-lucene/configs/builderConf.json");
 
 // Configure our directory locations based on the module location and the OS temporary directory.
-var basePath = fluid.module.resolvePath("%gpii-pouchdb-lucene/");
-var zipPath  = path.resolve(basePath, npmSettings.config.zipPath);
+var zipPath  = fluid.module.resolvePath(sharedSettings.options.zipPath);
 var tmpDir   = os.tmpdir();
 
 fluid.registerNamespace("gpii.pouch.lucene");
@@ -97,7 +98,7 @@ gpii.pouch.lucene.init = function (that) {
     var distZip = new AdmZip(that.options.zipPath);
     distZip.extractAllTo(outputDir);
 
-    that.workingDir = path.resolve(outputDir, "couchdb-lucene-" + npmSettings.config.version);
+    that.workingDir = path.resolve(outputDir, "couchdb-lucene-" + that.options.version);
     var confFile   = path.resolve(that.workingDir, "conf", "couchdb-lucene.ini");
 
     fluid.log("Generating configuration file...");
@@ -201,6 +202,8 @@ fluid.defaults("gpii.pouch.lucene", {
     pollInterval:   250,
     startupDelay:   2500, // How long to wait before reporting that couchdb-lucene is ready. TODO: Figure a better way to handle this.
     dbUrl:          "http://localhost:5986/ul",
+    // TODO:  Discuss how best to exchange material between kettle configs and plain component options
+    version:        sharedSettings.options.version,
     // The settings we will write to couchdb-lucene's configuration file.  Each top level key will become a section
     // entry, as in [lucene].  Each sub key-value pair will become an entry, as in dir=indexes
     iniSettings: {

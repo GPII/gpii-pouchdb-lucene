@@ -4,34 +4,24 @@
   "description": "A wrapper for couchdb-lucene to allow it to be required and used in tests.",
   "main": "index.js",
   "repository": "https://github.com/GPII/gpii-pouchdb-lucene/",
-  "config": {
-    "url": "https://github.com/rnewson/couchdb-lucene.git",
-    "hash": "ce773de1becf8a400e0344a43cf6eea3134dcc63",
-    "buildDir": "./build",
-    "srcDir": "./build/couchdb-lucene",
-    "zipPath": "./build/couchdb-lucene/target/couchdb-lucene-1.0.2-dist.zip",
-    "version": "1.0.2"
-  },
   "scripts": {
     "test": "node node_modules/istanbul/lib/cli.js cover tests/js/lucene-tests.js",
-    "postinstall": "grunt build_couchdb_lucene"
+    "postinstall": "node bin/build_couchdb_lucene.js"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "0.4.7",
     "gpii-express": "git://github.com/the-t-in-rtf/gpii-express.git#baa1558d22ee7abcb6d6b6410af7cc95693f1b80",
+    "gpii-launcher": "git://github.com/the-t-in-rtf/gpii-launcher.git#de16e831469ed549504c15048b0e868fc4b3da49",
     "gpii-pouchdb": "git://github.com/the-t-in-rtf/gpii-pouchdb.git#b5a4b2bd94cc652de7b564b3ec775b4894e824fc",
-    "grunt": "1.0.1",
-    "grunt-cli": "1.2.0",
-    "grunt-contrib-clean": "1.0.0",
-    "grunt-git": "1.0.0",
-    "grunt-shell": "1.3.1",
     "infusion": "2.0.0-dev.20160519T222603Z.754d2c6",
-    "request": "2.74.0"
+    "request": "2.74.0",
+    "rimraf": "2.5.4"
   },
   "devDependencies": {
     "fluid-grunt-eslint": "18.1.2",
+    "grunt": "1.0.1",
     "grunt-jsonlint": "1.1.0",
     "istanbul": "0.4.5",
     "kettle": "1.1.0",

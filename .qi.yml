@@ -16,7 +16,8 @@ software_stack_version: lts
 setup:
   - sudo yum -y install java-1.8.0-openjdk-devel.x86_64
   - sudo yum -y install maven.noarch
-  - npm install
+  - npm install -g yarn
+  - yarn install
 
 commands:
-  - TMPDIR=/tmp npm test
+  - TMPDIR=/tmp yarn test

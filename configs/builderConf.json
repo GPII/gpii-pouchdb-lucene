@@ -1,0 +1,12 @@
+{
+  "type": "builderConf",
+  "options": {
+    "gradeNames": ["gpii.pouchdb.builder"],
+    "url": "https://github.com/rnewson/couchdb-lucene.git",
+    "hash": "ce773de1becf8a400e0344a43cf6eea3134dcc63",
+    "version": "1.0.2",
+    "buildDir": "%gpii-pouchdb-lucene/build",
+    "srcDir": "%gpii-pouchdb-lucene/build/couchdb-lucene",
+    "zipPath": "%gpii-pouchdb-lucene/build/couchdb-lucene/target/couchdb-lucene-1.0.2-dist.zip"
+  }
+}
