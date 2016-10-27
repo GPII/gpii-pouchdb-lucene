@@ -11,8 +11,8 @@ When you first install this package, it will expect to be able to:
 
 The build process will not work unless:
 
-# git, maven, and java are installed and in your working path.
-# your JAVA_HOME environment variable is set properly.
+1. git, maven, and java are installed and in your working path.
+2. your JAVA_HOME environment variable is set properly.
 
 # How to use this package
 
