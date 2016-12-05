@@ -1143,9 +1143,9 @@ expand-template@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/expand-template/-/expand-template-1.0.3.tgz#6c303323177a62b1b22c070279f7861287b69b1a"
 
-"express-pouchdb@https://github.com/the-t-in-rtf/express-pouchdb.git#fa2778d1fdb6ac7c9d8adf7894b12df2e9e134f0":
+"express-pouchdb@git+https://github.com/the-t-in-rtf/express-pouchdb.git#fa2778d1fdb6ac7c9d8adf7894b12df2e9e134f0":
   version "2.1.0"
-  resolved "https://github.com/the-t-in-rtf/express-pouchdb.git#fa2778d1fdb6ac7c9d8adf7894b12df2e9e134f0"
+  resolved "git+https://github.com/the-t-in-rtf/express-pouchdb.git#fa2778d1fdb6ac7c9d8adf7894b12df2e9e134f0"
   dependencies:
     basic-auth "1.0.4"
     bluebird "3.4.1"
@@ -1575,9 +1575,9 @@ gpii-launcher@1.0.0-dev.20161125T160059Z.e8f50d4:
     kettle "1.2.2"
     yargs "6.4.0"
 
-gpii-pouchdb@1.0.0-dev.20161124T132616Z.f34a7ac:
-  version "1.0.0-dev.20161124T132616Z.f34a7ac"
-  resolved "https://registry.yarnpkg.com/gpii-pouchdb/-/gpii-pouchdb-1.0.0-dev.20161124T132616Z.f34a7ac.tgz#d13c05cf6cd828a845df6cde6e1782455ee421b0"
+gpii-pouchdb@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gpii-pouchdb/-/gpii-pouchdb-1.0.0.tgz#9b656d7eaaad031eba2e4a749701dab80ee2028a"
   dependencies:
     express "4.14.0"
     express-pouchdb "https://github.com/the-t-in-rtf/express-pouchdb.git#fa2778d1fdb6ac7c9d8adf7894b12df2e9e134f0"

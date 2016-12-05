@@ -14,7 +14,7 @@
     "adm-zip": "0.4.7",
     "gpii-express": "1.0.0",
     "gpii-launcher": "1.0.0-dev.20161125T160059Z.e8f50d4",
-    "gpii-pouchdb": "1.0.0-dev.20161124T132616Z.f34a7ac",
+    "gpii-pouchdb": "1.0.0",
     "infusion": "2.0.0-dev.20161027T155641Z.0bcd507",
     "request": "2.79.0",
     "rimraf": "2.5.4"
