@@ -18,4 +18,4 @@ apps:
       - sudo npm install -g yarn
       - yarn install
     test_cmds:
-      - TMPDIR=/tmp yarn test
+      - TMPDIR=/var/tmp yarn test
