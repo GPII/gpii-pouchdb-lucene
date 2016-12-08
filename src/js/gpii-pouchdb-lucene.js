@@ -1,47 +1,49 @@
-// A wrapper to spin up an instance of couchdb-lucene for use in tests.  This is not intended for production use
-// with CouchDB.
-//
-// The configuration options are:
-//
-// {
-//   port:     "9999"                  // The port couchdb-lucene will run on
-//   db: {
-//     url:    "http://localhost:7986/" // The URL on which Pouch is running
-//     nick:   "local",                // The "nickname" to use for the database when generating the configuration file.
-// }
-//
-// NOTE:  This component cannot be used repeatedly in a `testCaseHolder` element without adding special steps to your
-// test sequence.  Your first set of tests within a single `testCaseHolder` will generally succeed, but subsequent
-// tests may:
-//
-// 1. Fail with messages about not being able to reach parts of a component that has already been destroyed.
-// 2. Succeed, but generate messages about the port number already being in use.
-// 3. Succeed, but only because they randomly managed to start up at the right time.
-//
-// To use multiple tests in a single `testCaseHolder`, your test sequences must:
-//
-// 1. Trigger an `onReadyForShutdown` event when you are finished with the rest of your sequence.
-// 2. Listen for this component's `onShutdownComplete` event at the end of your test sequence.
-//
-// The end of your test sequence should look something like:
-//
-//    sequence: [
-//        // Test something here
-//        ...
-//        // Tell pouchdb-lucene to shut down
-//        {
-//            func: "{gpii.pouch.lucene}.events.onReadyForShutdown.fire"
-//        }
-//        // Confirm that pouchdb-lucene is shut down
-//        {
-//            listener: "fluid.identity"
-//            event:    "{gpii.pouch.lucene}.events.onShutdownComplete"
-//        }
-//    ]
-//
-// For more examples of using this component more than once in the same `testCaseHolder`, check out the tests in this
-// package.
-//
+/*
+    A wrapper to spin up an instance of couchdb-lucene for use in tests.  This is not intended for production use
+    with CouchDB.
+
+    The configuration options are:
+
+    {
+      port:     "9999"                  // The port couchdb-lucene will run on
+      db: {
+        url:    "http://localhost:7986/" // The URL on which Pouch is running
+        nick:   "local",                // The "nickname" to use for the database when generating the configuration file.
+    }
+
+    NOTE:  This component cannot be used repeatedly in a `testCaseHolder` element without adding special steps to your
+    test sequence.  Your first set of tests within a single `testCaseHolder` will generally succeed, but subsequent
+    tests may:
+
+    1. Fail with messages about not being able to reach parts of a component that has already been destroyed.
+    2. Succeed, but generate messages about the port number already being in use.
+    3. Succeed, but only because they randomly managed to start up at the right time.
+
+    To use multiple tests in a single `testCaseHolder`, your test sequences must:
+
+    1. Trigger an `onReadyForShutdown` event when you are finished with the rest of your sequence.
+    2. Listen for this component's `onShutdownComplete` event at the end of your test sequence.
+
+    The end of your test sequence should look something like:
+
+       sequence: [
+           // Test something here
+           ...
+           // Tell pouchdb-lucene to shut down
+           {
+               func: "{gpii.pouch.lucene}.events.onReadyForShutdown.fire"
+           }
+           // Confirm that pouchdb-lucene is shut down
+           {
+               listener: "fluid.identity"
+               event:    "{gpii.pouch.lucene}.events.onShutdownComplete"
+           }
+       ]
+
+    For more examples of using this component more than once in the same `testCaseHolder`, check out the tests in this
+    package.
+
+*/
 "use strict";
 var fluid = require("infusion");
 var gpii  = fluid.registerNamespace("gpii");
@@ -51,8 +53,6 @@ var path          = require("path");
 var os            = require("os");
 var child_process = require("child_process");
 var fs            = require("fs");
-
-// require("../../");
 
 // There are some constants that we use in the build and here as well.
 var sharedSettings = fluid.require("%gpii-pouchdb-lucene/configs/builderConf.json");
