@@ -1,5 +1,14 @@
 /*
 
+    A script to (re)build couchdb-lucene on all platforms.  Created as an alternative to problematic Grunt
+    "postinstall" steps, and built on top of gpii-launcher:
+
+    https://github.com/GPII/gpii-launcher
+
+    For a list of supported arguments, run this file with the `--help` argument.
+
+    As outlined in the README, you must have both Java and maven installed for this script to perform its work.
+
  */
 /* eslint-env node */
 "use strict";
