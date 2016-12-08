@@ -4,15 +4,16 @@ jdk:
   - oraclejdk8
 
 env:
-  - NODE_VERSION=0.12 JAVA_OPTS="-Djava.net.preferIPv4Stack=true"
+  - NODE_VERSION=6 JAVA_OPTS="-Djava.net.preferIPv4Stack=true"
 
 install:
   - nvm install $NODE_VERSION
-  - npm install
+  - npm install -g yarn
+  - yarn install
 
 script:
   - nvm use $NODE_VERSION
-  - npm test
+  - yarn test
 
 cache:
   directories:
