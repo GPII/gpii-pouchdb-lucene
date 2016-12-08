@@ -28,9 +28,8 @@ var rimraf        = require("rimraf");
 fluid.registerNamespace("gpii.pouchdb.builder");
 
 gpii.pouchdb.builder.checkForZip = function (that) {
-    var resolvedZipPath = fluid.module.resolvePath(that.options.zipPath);
-    if (fs.existsSync(resolvedZipPath) && !that.options.clean) {
-        fluid.log("Zip file '" + resolvedZipPath + "' already exists, skipping build...");
+    if (fs.existsSync(that.options.resolvedZipPath) && !that.options.clean) {
+        fluid.log("Zip file '" + that.options.resolvedZipPath + "' already exists, skipping build...");
     }
     else {
         that.clean();
