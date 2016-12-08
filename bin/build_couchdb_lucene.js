@@ -37,8 +37,7 @@ gpii.pouchdb.builder.checkForZip = function (that) {
 };
 
 gpii.pouchdb.builder.clean = function (that) {
-    var contentToRemove = fluid.module.resolvePath(that.options.srcDir);
-    rimraf(contentToRemove, function (error) {
+    rimraf(that.options.resolvedSrcDir, function (error) {
         if (error) {
             that.events.onError.fire(error);
         }
