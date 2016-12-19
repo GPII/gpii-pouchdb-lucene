@@ -28,5 +28,6 @@
     "istanbul": "0.4.5",
     "kettle": "1.2.2",
     "node-jqunit": "1.1.4"
+    "pouchdb": "6.1.0"
   }
 }
