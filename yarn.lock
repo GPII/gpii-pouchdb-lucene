@@ -746,13 +746,13 @@ debug@0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
-debug@2.2.0, debug@^2.1.0, debug@^2.1.1, debug@^2.2.0, debug@~2.2.0:
+debug@2.2.0, debug@^2.1.1, debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
     ms "0.7.1"
 
-debug@2.3.2:
+debug@2.3.2, debug@^2.1.0, debug@^2.2.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.3.2.tgz#94cb466ef7d6d2c7e5245cdd6e4104f2d0d70d30"
   dependencies:
@@ -1571,17 +1571,6 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gpii-express@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.1.tgz#ad2b3e110d56867e171c2323362caaa378163095"
-  dependencies:
-    body-parser "1.15.2"
-    cookie-parser "1.4.3"
-    express "4.14.0"
-    express-session "1.14.2"
-    infusion "2.0.0-dev.20161027T155641Z.0bcd507"
-    resolve "1.1.7"
-
 gpii-express@1.0.1-dev.20161219T161942Z.50ed093:
   version "1.0.1-dev.20161219T161942Z.50ed093"
   resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.1-dev.20161219T161942Z.50ed093.tgz#df3192fa22aaa2c9d3a94e313d2529260a3151a3"
@@ -1593,13 +1582,24 @@ gpii-express@1.0.1-dev.20161219T161942Z.50ed093:
     infusion "2.0.0-dev.20161219T154515Z.0f2ccc8"
     resolve "1.2.0"
 
-gpii-launcher@1.0.0-dev.20161219T174154Z.1d71e9c:
-  version "1.0.0-dev.20161219T174154Z.1d71e9c"
-  resolved "https://registry.yarnpkg.com/gpii-launcher/-/gpii-launcher-1.0.0-dev.20161219T174154Z.1d71e9c.tgz#78d6c665f75918f3fb77eea0184134414d0d482b"
+gpii-express@1.0.1-dev.20170106T131203Z.a048e61:
+  version "1.0.1-dev.20170106T131203Z.a048e61"
+  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.1-dev.20170106T131203Z.a048e61.tgz#5ce9b3c8f996bc3da9f4f0e6afb1fc30338eabdc"
+  dependencies:
+    body-parser "1.15.2"
+    cookie-parser "1.4.3"
+    express "4.14.0"
+    express-session "1.14.2"
+    infusion "2.0.0-dev.20161219T170555Z.5778f7e"
+    resolve "1.2.0"
+
+gpii-launcher@1.0.0-dev.20170106T131608Z.4177cc4:
+  version "1.0.0-dev.20170106T131608Z.4177cc4"
+  resolved "https://registry.yarnpkg.com/gpii-launcher/-/gpii-launcher-1.0.0-dev.20170106T131608Z.4177cc4.tgz#e0603d90a11cc977e3ec222a2dba132f0460fd47"
   dependencies:
     infusion "2.0.0"
     istanbul "0.4.5"
-    kettle "1.2.2"
+    kettle "1.3.0"
     yargs "6.5.0"
 
 gpii-pouchdb@1.0.1-dev.20161219T174439Z.2373866:
@@ -1873,12 +1873,6 @@ infusion@2.0.0:
 infusion@2.0.0-dev.20151130T180545Z.18ee3f8:
   version "2.0.0-dev.20151130T180545Z.18ee3f8"
   resolved "https://registry.yarnpkg.com/infusion/-/infusion-2.0.0-dev.20151130T180545Z.18ee3f8.tgz#07ade23574f012178be2218a8f5141bab14bdaa2"
-  dependencies:
-    resolve "1.1.6"
-
-infusion@2.0.0-dev.20160519T222603Z.754d2c6:
-  version "2.0.0-dev.20160519T222603Z.754d2c6"
-  resolved "https://registry.yarnpkg.com/infusion/-/infusion-2.0.0-dev.20160519T222603Z.754d2c6.tgz#c50ecd08d6fb950be98cb2254ace373e3b37f877"
   dependencies:
     resolve "1.1.6"
 
@@ -2202,19 +2196,19 @@ jstransform@~3.0.0:
     esprima-fb "~3001.1.0-dev-harmony-fb"
     source-map "0.1.31"
 
-kettle@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/kettle/-/kettle-1.2.2.tgz#169cf6948da181170e56ae7c33b36f77ef7eb339"
+kettle@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/kettle/-/kettle-1.3.0.tgz#ac3e63d10f0b31ac6edf4abfd4ed6ba78e96a541"
   dependencies:
     body-parser "1.15.2"
     cookie-parser "1.4.3"
     express "4.14.0"
     express-session "1.14.0"
-    infusion "2.0.0-dev.20160519T222603Z.754d2c6"
+    fluid-resolve "1.2.0"
+    infusion "2.0.0-dev.20161219T170555Z.5778f7e"
     json5 "0.5.0"
     jsonlint "1.6.0"
     path-to-regexp "1.5.3"
-    resolve "1.1.6"
     serve-static "1.11.1"
     ws "1.1.1"
 
@@ -3493,7 +3487,7 @@ resolve@1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.6.tgz#d3492ad054ca800f5befa612e61beac1eec98f8f"
 
-resolve@1.1.7, resolve@1.1.x, resolve@~1.1.0:
+resolve@1.1.x, resolve@~1.1.0:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
