@@ -12,22 +12,21 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "0.4.7",
-    "gpii-express": "1.0.1-dev.20170106T131203Z.a048e61",
-    "gpii-launcher": "1.0.0-dev.20170106T131608Z.4177cc4",
+    "gpii-express": "1.0.1-dev.20170127T142027Z.d7dabd6",
+    "gpii-launcher": "1.0.0-dev.20170113T104654Z.903ad25",
     "gpii-pouchdb": "1.0.1-dev.20161219T174439Z.2373866",
-    "infusion": "2.0.0-dev.20161219T170555Z.5778f7e",
+    "infusion": "3.0.0-dev.20170127T130413Z.103de6e",
     "request": "2.79.0",
     "rimraf": "2.5.4"
   },
   "devDependencies": {
-    "eslint": "3.12.2",
-    "eslint-config-fluid": "1.0.0",
+    "eslint": "3.14.1",
+    "eslint-config-fluid": "1.1.0",
     "fluid-grunt-eslint": "18.1.2",
     "grunt": "1.0.1",
     "grunt-jsonlint": "1.1.0",
     "istanbul": "0.4.5",
     "kettle": "1.3.0",
-    "node-jqunit": "1.1.4",
-    "pouchdb": "6.1.0"
+    "node-jqunit": "1.1.4"
   }
 }
