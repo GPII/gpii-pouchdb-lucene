@@ -39,6 +39,10 @@ acorn-jsx@^3.0.0:
   dependencies:
     acorn "^3.0.4"
 
+acorn@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.4.tgz#17a8d6a7a6c4ef538b814ec9abac2779293bf30a"
+
 acorn@^1.0.3:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-1.2.2.tgz#c8ce27de0acc76d896d2b1fad3df588d9e82f014"
@@ -46,10 +50,6 @@ acorn@^1.0.3:
 acorn@^3.0.4, acorn@^3.1.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
-
-acorn@^4.0.1:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.3.tgz#1a3e850b428e73ba6b09d1cc527f5aaad4d03ef1"
 
 adm-zip@0.4.7:
   version "0.4.7"
@@ -760,15 +760,9 @@ debug@2.3.3:
   dependencies:
     ms "0.7.2"
 
-debug@2.6.0, debug@^2.1.0, debug@^2.2.0:
+debug@2.6.0, debug@^2.1.0, debug@^2.1.1, debug@^2.2.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.0.tgz#bc596bcabe7617f11d9fa15361eded5608b8499b"
-  dependencies:
-    ms "0.7.2"
-
-debug@^2.1.1:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.3.2.tgz#94cb466ef7d6d2c7e5245cdd6e4104f2d0d70d30"
   dependencies:
     ms "0.7.2"
 
@@ -1029,9 +1023,9 @@ eslint-config-fluid@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/eslint-config-fluid/-/eslint-config-fluid-1.1.0.tgz#82b8bff6d208ff2492938cbe1a011d4ca2362a97"
 
-eslint@3.14.1:
-  version "3.14.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.14.1.tgz#8a62175f2255109494747a1b25128d97b8eb3d97"
+eslint@3.15.0:
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.15.0.tgz#bdcc6a6c5ffe08160e7b93c066695362a91e30f2"
   dependencies:
     babel-code-frame "^6.16.0"
     chalk "^1.1.3"
@@ -1039,7 +1033,7 @@ eslint@3.14.1:
     debug "^2.1.1"
     doctrine "^1.2.2"
     escope "^3.6.0"
-    espree "^3.3.1"
+    espree "^3.4.0"
     estraverse "^4.2.0"
     esutils "^2.0.2"
     file-entry-cache "^2.0.0"
@@ -1079,11 +1073,11 @@ espree@3.1.4:
     acorn "^3.1.0"
     acorn-jsx "^3.0.0"
 
-espree@^3.3.1:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/espree/-/espree-3.3.2.tgz#dbf3fadeb4ecb4d4778303e50103b3d36c88b89c"
+espree@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/espree/-/espree-3.4.0.tgz#41656fa5628e042878025ef467e78f125cb86e1d"
   dependencies:
-    acorn "^4.0.1"
+    acorn "4.0.4"
     acorn-jsx "^3.0.0"
 
 esprima-fb@^15001.1.0-dev-harmony-fb:
@@ -1580,14 +1574,14 @@ gpii-express@1.0.2:
     express-session "1.15.0"
     infusion "3.0.0-dev.20170127T130413Z.103de6e"
 
-gpii-launcher@1.0.0-dev.20170113T104654Z.903ad25:
-  version "1.0.0-dev.20170113T104654Z.903ad25"
-  resolved "https://registry.yarnpkg.com/gpii-launcher/-/gpii-launcher-1.0.0-dev.20170113T104654Z.903ad25.tgz#14345198f37362ba1d483820e6c0063d67d2f428"
+gpii-launcher@1.0.0-dev.20170207T102054Z.3d7b546:
+  version "1.0.0-dev.20170207T102054Z.3d7b546"
+  resolved "https://registry.yarnpkg.com/gpii-launcher/-/gpii-launcher-1.0.0-dev.20170207T102054Z.3d7b546.tgz#37472f54060f1fefe58d55187e0d5993344fe3de"
   dependencies:
     infusion "2.0.0"
     istanbul "0.4.5"
     kettle "1.3.0"
-    yargs "6.5.0"
+    yargs "6.6.0"
 
 gpii-pouchdb@1.0.1-dev.20170127T160305Z.627b5f7:
   version "1.0.1-dev.20170127T160305Z.627b5f7"
@@ -1882,6 +1876,12 @@ infusion@2.0.0-dev.20161219T170555Z.5778f7e:
 infusion@3.0.0-dev.20170127T130413Z.103de6e:
   version "3.0.0-dev.20170127T130413Z.103de6e"
   resolved "https://registry.yarnpkg.com/infusion/-/infusion-3.0.0-dev.20170127T130413Z.103de6e.tgz#59d5163cd6c55d4c5b3c34af54b74fdb331b1a1d"
+  dependencies:
+    fluid-resolve "1.2.0"
+
+infusion@3.0.0-dev.20170131T153243Z.6aab53a:
+  version "3.0.0-dev.20170131T153243Z.6aab53a"
+  resolved "https://registry.yarnpkg.com/infusion/-/infusion-3.0.0-dev.20170131T153243Z.6aab53a.tgz#79080e54636b9ede32ac6a69ceb18ab6fd248a19"
   dependencies:
     fluid-resolve "1.2.0"
 
@@ -2199,16 +2199,16 @@ kettle@1.3.0:
     serve-static "1.11.1"
     ws "1.1.1"
 
-kettle@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/kettle/-/kettle-1.3.1.tgz#3477c6767f9a06048f28becfe809348e02ba2b0d"
+kettle@1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/kettle/-/kettle-1.3.2.tgz#fecf522e290c93a7e50dbd4a9fabf9b57d4ade3f"
   dependencies:
     body-parser "1.16.0"
     cookie-parser "1.4.3"
     express "4.14.0"
     express-session "1.15.0"
     fluid-resolve "1.2.0"
-    infusion "3.0.0-dev.20170127T130413Z.103de6e"
+    infusion "3.0.0-dev.20170131T153243Z.6aab53a"
     json5 "0.5.1"
     jsonlint "1.6.2"
     path-to-regexp "1.7.0"
@@ -3530,7 +3530,7 @@ send@0.14.2:
     range-parser "~1.2.0"
     statuses "~1.3.1"
 
-serve-static@1.11.1, serve-static@~1.11.1:
+serve-static@1.11.1:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.11.1.tgz#d6cce7693505f733c759de57befc1af76c0f0805"
   dependencies:
@@ -3539,7 +3539,7 @@ serve-static@1.11.1, serve-static@~1.11.1:
     parseurl "~1.3.1"
     send "0.14.1"
 
-serve-static@1.11.2:
+serve-static@1.11.2, serve-static@~1.11.1:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.11.2.tgz#2cf9889bd4435a320cc36895c9aa57bd662e6ac7"
   dependencies:
@@ -4080,10 +4080,6 @@ window-size@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
 
-window-size@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/window-size/-/window-size-0.2.0.tgz#b4315bb4214a3d7058ebeee892e13fa24d98b075"
-
 wordwrap@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.2.tgz#b79669bb42ecb409f83d583cad52ca17eaa1643f"
@@ -4165,9 +4161,9 @@ yargs-parser@^4.2.0:
   dependencies:
     camelcase "^3.0.0"
 
-yargs@6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.5.0.tgz#a902e23a1f0fe912b2a03f6131b7ed740c9718ff"
+yargs@6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.6.0.tgz#782ec21ef403345f830a808ca3d513af56065208"
   dependencies:
     camelcase "^3.0.0"
     cliui "^3.2.0"
@@ -4180,7 +4176,6 @@ yargs@6.5.0:
     set-blocking "^2.0.0"
     string-width "^1.0.2"
     which-module "^1.0.0"
-    window-size "^0.2.0"
     y18n "^3.2.1"
     yargs-parser "^4.2.0"
 

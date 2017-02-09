@@ -13,20 +13,20 @@
   "dependencies": {
     "adm-zip": "0.4.7",
     "gpii-express": "1.0.2",
-    "gpii-launcher": "1.0.0-dev.20170113T104654Z.903ad25",
+    "gpii-launcher": "1.0.0-dev.20170207T102054Z.3d7b546",
     "gpii-pouchdb": "1.0.1-dev.20170127T160305Z.627b5f7",
     "infusion": "3.0.0-dev.20170127T130413Z.103de6e",
     "request": "2.79.0",
     "rimraf": "2.5.4"
   },
   "devDependencies": {
-    "eslint": "3.14.1",
+    "eslint": "3.15.0",
     "eslint-config-fluid": "1.1.0",
     "fluid-grunt-eslint": "18.1.2",
     "grunt": "1.0.1",
     "grunt-jsonlint": "1.1.0",
     "istanbul": "0.4.5",
-    "kettle": "1.3.1",
+    "kettle": "1.3.2",
     "node-jqunit": "1.1.4"
   }
 }
