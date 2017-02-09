@@ -9,11 +9,11 @@ env:
 install:
   - nvm install $NODE_VERSION
   - npm install -g yarn
-  - yarn install
+  - npm install
 
 script:
   - nvm use $NODE_VERSION
-  - yarn test
+  - npm test
 
 cache:
   directories:

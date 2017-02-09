@@ -15,7 +15,6 @@ apps:
     setup:
       - sudo yum -y install java-1.8.0-openjdk-devel.x86_64
       - sudo yum -y install maven.noarch
-      - yarn cache clean
-      - yarn install
+      - npminstall
     test_cmds:
-      - TMPDIR=/var/tmp yarn test
+      - TMPDIR=/var/tmp npm test
