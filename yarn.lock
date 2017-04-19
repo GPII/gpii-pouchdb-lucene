@@ -67,14 +67,7 @@ ajv-keywords@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.1.1.tgz#02550bc605a3e576041565628af972e06c549d50"
 
-ajv@^4.7.0:
-  version "4.8.1"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.8.1.tgz#708213577289a84a8148e66daa980c32da6a562e"
-  dependencies:
-    co "^4.6.0"
-    json-stable-stringify "^1.0.1"
-
-ajv@^4.9.1:
+ajv@^4.7.0, ajv@^4.9.1:
   version "4.11.7"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.7.tgz#8655a5d86d0824985cc471a1d913fb6729a0ec48"
   dependencies:
@@ -1709,6 +1702,16 @@ gpii-express@1.0.7-dev.20170417T134005Z.8acdf26:
     express-session "1.15.2"
     infusion "3.0.0-dev.20170322T234120Z.278de35"
 
+gpii-express@1.0.7-dev.20170419T084255Z.1cfe9d8:
+  version "1.0.7-dev.20170419T084255Z.1cfe9d8"
+  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.7-dev.20170419T084255Z.1cfe9d8.tgz#eff4853fff23fe5485ad898c5b9243eb87548b26"
+  dependencies:
+    body-parser "1.17.1"
+    cookie-parser "1.4.3"
+    express "4.15.2"
+    express-session "1.15.2"
+    infusion "3.0.0-dev.20170322T234120Z.278de35"
+
 gpii-launcher@1.0.0-dev.20170418T074902Z.021b089:
   version "1.0.0-dev.20170418T074902Z.021b089"
   resolved "https://registry.yarnpkg.com/gpii-launcher/-/gpii-launcher-1.0.0-dev.20170418T074902Z.021b089.tgz#33adf2a0757d7fbfcde3a8b7d58b4091664133ff"
@@ -2313,7 +2316,7 @@ jstransform@~3.0.0:
     esprima-fb "~3001.1.0-dev-harmony-fb"
     source-map "0.1.31"
 
-"kettle@git://github.com/the-t-in-rtf/kettle#ae8462ae9f7169db72de89d6bbe0f7b1a12da657", "kettle@git://github.com/the-t-in-rtf/kettle.git#ae8462ae9f7169db72de89d6bbe0f7b1a12da657":
+"kettle@git://github.com/the-t-in-rtf/kettle#ae8462ae9f7169db72de89d6bbe0f7b1a12da657":
   version "1.4.0"
   resolved "git://github.com/the-t-in-rtf/kettle#ae8462ae9f7169db72de89d6bbe0f7b1a12da657"
   dependencies:
@@ -3509,32 +3512,7 @@ repeating@^2.0.0:
   dependencies:
     is-finite "^1.0.0"
 
-request@2, request@2.79.0:
-  version "2.79.0"
-  resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
-  dependencies:
-    aws-sign2 "~0.6.0"
-    aws4 "^1.2.1"
-    caseless "~0.11.0"
-    combined-stream "~1.0.5"
-    extend "~3.0.0"
-    forever-agent "~0.6.1"
-    form-data "~2.1.1"
-    har-validator "~2.0.6"
-    hawk "~3.1.3"
-    http-signature "~1.1.0"
-    is-typedarray "~1.0.0"
-    isstream "~0.1.2"
-    json-stringify-safe "~5.0.1"
-    mime-types "~2.1.7"
-    oauth-sign "~0.8.1"
-    qs "~6.3.0"
-    stringstream "~0.0.4"
-    tough-cookie "~2.3.0"
-    tunnel-agent "~0.4.1"
-    uuid "^3.0.0"
-
-request@2.81.0:
+request@2, request@2.81.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:
@@ -3559,6 +3537,31 @@ request@2.81.0:
     stringstream "~0.0.4"
     tough-cookie "~2.3.0"
     tunnel-agent "^0.6.0"
+    uuid "^3.0.0"
+
+request@2.79.0:
+  version "2.79.0"
+  resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
+  dependencies:
+    aws-sign2 "~0.6.0"
+    aws4 "^1.2.1"
+    caseless "~0.11.0"
+    combined-stream "~1.0.5"
+    extend "~3.0.0"
+    forever-agent "~0.6.1"
+    form-data "~2.1.1"
+    har-validator "~2.0.6"
+    hawk "~3.1.3"
+    http-signature "~1.1.0"
+    is-typedarray "~1.0.0"
+    isstream "~0.1.2"
+    json-stringify-safe "~5.0.1"
+    mime-types "~2.1.7"
+    oauth-sign "~0.8.1"
+    qs "~6.3.0"
+    stringstream "~0.0.4"
+    tough-cookie "~2.3.0"
+    tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
 require-directory@^2.1.1:

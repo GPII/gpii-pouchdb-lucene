@@ -1,1 +1,0 @@
-This directory will contain the source code and compiled files for couchdb-lucene once `npm install` is run.

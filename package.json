@@ -6,16 +6,18 @@
   "repository": "https://github.com/GPII/gpii-pouchdb-lucene/",
   "scripts": {
     "test": "node node_modules/istanbul/lib/cli.js cover tests/js/lucene-tests.js",
-    "postinstall": "node bin/build_couchdb_lucene.js"
+    "postinstall": "npm run clean && npm run build",
+    "clean": "node node_modules/rimraf/bin.js build && node node_modules/mkdirp/bin/cmd.js build",
+    "build": "node bin/build_couchdb_lucene.js"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "0.4.7",
-    "gpii-express": "1.0.7-dev.20170417T134005Z.8acdf26",
+    "gpii-express": "1.0.7-dev.20170419T084255Z.1cfe9d8",
     "gpii-launcher": "1.0.0-dev.20170418T074902Z.021b089",
     "gpii-pouchdb": "1.0.1-dev.20170418T100143Z.c71ccd4",
-    "infusion": "3.0.0-dev.20170127T130413Z.103de6e",
+    "infusion": "3.0.0-dev.20170322T234120Z.278de35",
     "request": "2.81.0",
     "rimraf": "2.6.1"
   },
@@ -27,6 +29,7 @@
     "grunt-jsonlint": "1.1.0",
     "istanbul": "0.4.5",
     "kettle": "git://github.com/the-t-in-rtf/kettle#ae8462ae9f7169db72de89d6bbe0f7b1a12da657",
+    "mkdirp": "^0.5.1",
     "node-jqunit": "1.1.4"
   }
 }
