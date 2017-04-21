@@ -635,10 +635,6 @@ consolidate@^0.14.0:
   dependencies:
     bluebird "^3.1.1"
 
-content-disposition@0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.1.tgz#87476c6a67c8daa87e32e87616df883ba7fb071b"
-
 content-disposition@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.2.tgz#0cf68bb9ddf5f2be7961c3a85178cb85dba78cb4"
@@ -1267,37 +1263,6 @@ express-session@1.15.2:
     uid-safe "~2.1.4"
     utils-merge "1.0.0"
 
-express@4.14.0:
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/express/-/express-4.14.0.tgz#c1ee3f42cdc891fb3dc650a8922d51ec847d0d66"
-  dependencies:
-    accepts "~1.3.3"
-    array-flatten "1.1.1"
-    content-disposition "0.5.1"
-    content-type "~1.0.2"
-    cookie "0.3.1"
-    cookie-signature "1.0.6"
-    debug "~2.2.0"
-    depd "~1.1.0"
-    encodeurl "~1.0.1"
-    escape-html "~1.0.3"
-    etag "~1.7.0"
-    finalhandler "0.5.0"
-    fresh "0.3.0"
-    merge-descriptors "1.0.1"
-    methods "~1.1.2"
-    on-finished "~2.3.0"
-    parseurl "~1.3.1"
-    path-to-regexp "0.1.7"
-    proxy-addr "~1.1.2"
-    qs "6.2.0"
-    range-parser "~1.2.0"
-    send "0.14.1"
-    serve-static "~1.11.1"
-    type-is "~1.6.13"
-    utils-merge "1.0.0"
-    vary "~1.1.0"
-
 express@4.14.1:
   version "4.14.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.14.1.tgz#646c237f766f148c2120aff073817b9e4d7e0d33"
@@ -1411,16 +1376,6 @@ file-entry-cache@^2.0.0:
   dependencies:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
-
-finalhandler@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-0.5.0.tgz#e9508abece9b6dba871a6942a1d7911b91911ac7"
-  dependencies:
-    debug "~2.2.0"
-    escape-html "~1.0.3"
-    on-finished "~2.3.0"
-    statuses "~1.3.0"
-    unpipe "~1.0.0"
 
 finalhandler@0.5.1:
   version "0.5.1"
@@ -1692,9 +1647,9 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gpii-express@1.0.7-dev.20170417T134005Z.8acdf26:
-  version "1.0.7-dev.20170417T134005Z.8acdf26"
-  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.7-dev.20170417T134005Z.8acdf26.tgz#c03f8821964870b9f64f864203455eeac02326a0"
+gpii-express@1.0.7-dev.20170419T132453Z.1118304:
+  version "1.0.7-dev.20170419T132453Z.1118304"
+  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.7-dev.20170419T132453Z.1118304.tgz#f90c378e2a9ec78959a0dabc6dcd3ac62393588d"
   dependencies:
     body-parser "1.17.1"
     cookie-parser "1.4.3"
@@ -1702,33 +1657,24 @@ gpii-express@1.0.7-dev.20170417T134005Z.8acdf26:
     express-session "1.15.2"
     infusion "3.0.0-dev.20170322T234120Z.278de35"
 
-gpii-express@1.0.7-dev.20170419T084255Z.1cfe9d8:
-  version "1.0.7-dev.20170419T084255Z.1cfe9d8"
-  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.7-dev.20170419T084255Z.1cfe9d8.tgz#eff4853fff23fe5485ad898c5b9243eb87548b26"
-  dependencies:
-    body-parser "1.17.1"
-    cookie-parser "1.4.3"
-    express "4.15.2"
-    express-session "1.15.2"
-    infusion "3.0.0-dev.20170322T234120Z.278de35"
-
-gpii-launcher@1.0.0-dev.20170418T074902Z.021b089:
-  version "1.0.0-dev.20170418T074902Z.021b089"
-  resolved "https://registry.yarnpkg.com/gpii-launcher/-/gpii-launcher-1.0.0-dev.20170418T074902Z.021b089.tgz#33adf2a0757d7fbfcde3a8b7d58b4091664133ff"
+gpii-launcher@1.0.0-dev.20170421T083910Z.6a173da:
+  version "1.0.0-dev.20170421T083910Z.6a173da"
+  resolved "https://registry.yarnpkg.com/gpii-launcher/-/gpii-launcher-1.0.0-dev.20170421T083910Z.6a173da.tgz#d1bf91309b9f26217c8e39549efce85f053cf615"
   dependencies:
     infusion "3.0.0-dev.20170322T234120Z.278de35"
     istanbul "0.4.5"
-    kettle "git://github.com/the-t-in-rtf/kettle#ae8462ae9f7169db72de89d6bbe0f7b1a12da657"
+    kettle "1.4.1"
     yargs "7.1.0"
 
-gpii-pouchdb@1.0.1-dev.20170418T100143Z.c71ccd4:
-  version "1.0.1-dev.20170418T100143Z.c71ccd4"
-  resolved "https://registry.yarnpkg.com/gpii-pouchdb/-/gpii-pouchdb-1.0.1-dev.20170418T100143Z.c71ccd4.tgz#59ef5899ce79bb46cca4ea06dc44b4657acc63f4"
+gpii-pouchdb@1.0.1-dev.20170420T094149Z.82af4d9:
+  version "1.0.1-dev.20170420T094149Z.82af4d9"
+  resolved "https://registry.yarnpkg.com/gpii-pouchdb/-/gpii-pouchdb-1.0.1-dev.20170420T094149Z.82af4d9.tgz#c5276fcea558c70aac0553e7e21502f1a0def896"
   dependencies:
     body-parser "1.17.1"
-    express "4.14.0"
+    express "4.15.2"
     express-pouchdb "git://github.com/the-t-in-rtf/express-pouchdb.git#1b89c3968b612a955c51a1c5e45b2ffc75620aeb"
-    gpii-express "1.0.7-dev.20170417T134005Z.8acdf26"
+    gpii-express "1.0.7-dev.20170419T132453Z.1118304"
+    graceful-fs "4.1.11"
     infusion "3.0.0-dev.20170322T234120Z.278de35"
     istanbul "0.4.5"
     lie "3.1.1"
@@ -1738,9 +1684,9 @@ gpii-pouchdb@1.0.1-dev.20170418T100143Z.c71ccd4:
     testem "1.13.0"
     underscore-node "0.1.2"
 
-graceful-fs@^4.1.2:
-  version "4.1.9"
-  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.9.tgz#baacba37d19d11f9d146d3578bc99958c3787e29"
+graceful-fs@4.1.11, graceful-fs@^4.1.2:
+  version "4.1.11"
+  resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
@@ -2012,12 +1958,6 @@ infusion@2.0.0-dev.20151130T180545Z.18ee3f8:
   resolved "https://registry.yarnpkg.com/infusion/-/infusion-2.0.0-dev.20151130T180545Z.18ee3f8.tgz#07ade23574f012178be2218a8f5141bab14bdaa2"
   dependencies:
     resolve "1.1.6"
-
-infusion@3.0.0-dev.20170127T130413Z.103de6e:
-  version "3.0.0-dev.20170127T130413Z.103de6e"
-  resolved "https://registry.yarnpkg.com/infusion/-/infusion-3.0.0-dev.20170127T130413Z.103de6e.tgz#59d5163cd6c55d4c5b3c34af54b74fdb331b1a1d"
-  dependencies:
-    fluid-resolve "1.2.0"
 
 infusion@3.0.0-dev.20170322T234120Z.278de35:
   version "3.0.0-dev.20170322T234120Z.278de35"
@@ -2316,9 +2256,9 @@ jstransform@~3.0.0:
     esprima-fb "~3001.1.0-dev-harmony-fb"
     source-map "0.1.31"
 
-"kettle@git://github.com/the-t-in-rtf/kettle#ae8462ae9f7169db72de89d6bbe0f7b1a12da657":
-  version "1.4.0"
-  resolved "git://github.com/the-t-in-rtf/kettle#ae8462ae9f7169db72de89d6bbe0f7b1a12da657"
+kettle@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/kettle/-/kettle-1.4.1.tgz#167e8bc505e850eb64014039e9bd84f629da942c"
   dependencies:
     body-parser "1.16.1"
     cookie-parser "1.4.3"
@@ -2698,7 +2638,7 @@ minimist@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.1.0.tgz#99df657a52574c21c9057497df742790b2b4c0de"
 
-mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
+mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
@@ -3329,7 +3269,7 @@ promise-nodify@^1.0.0, promise-nodify@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/promise-nodify/-/promise-nodify-1.0.2.tgz#0d0fb143c33400b0061b47e581257557047d4c5a"
 
-proxy-addr@~1.1.2, proxy-addr@~1.1.3:
+proxy-addr@~1.1.3:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-1.1.4.tgz#27e545f6960a44a627d9b44467e35c1b6b4ce2f3"
   dependencies:
@@ -3650,24 +3590,6 @@ secure-random@^1.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.1.1.tgz#a3292a373e6f3e0798da0b20641b9a9c5bc47e19"
 
-send@0.14.1:
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/send/-/send-0.14.1.tgz#a954984325392f51532a7760760e459598c89f7a"
-  dependencies:
-    debug "~2.2.0"
-    depd "~1.1.0"
-    destroy "~1.0.4"
-    encodeurl "~1.0.1"
-    escape-html "~1.0.3"
-    etag "~1.7.0"
-    fresh "0.3.0"
-    http-errors "~1.5.0"
-    mime "1.3.4"
-    ms "0.7.1"
-    on-finished "~2.3.0"
-    range-parser "~1.2.0"
-    statuses "~1.3.0"
-
 send@0.14.2:
   version "0.14.2"
   resolved "https://registry.yarnpkg.com/send/-/send-0.14.2.tgz#39b0438b3f510be5dc6f667a11f71689368cdeef"
@@ -3704,7 +3626,7 @@ send@0.15.1:
     range-parser "~1.2.0"
     statuses "~1.3.1"
 
-serve-static@1.11.2, serve-static@~1.11.1, serve-static@~1.11.2:
+serve-static@1.11.2, serve-static@~1.11.2:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.11.2.tgz#2cf9889bd4435a320cc36895c9aa57bd662e6ac7"
   dependencies:
@@ -3897,7 +3819,7 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
-"statuses@>= 1.3.1 < 2", statuses@~1.3.0, statuses@~1.3.1:
+"statuses@>= 1.3.1 < 2", statuses@~1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.3.1.tgz#faf51b9eb74aaef3b3acf4ad5f61abf24cb7b93e"
 
