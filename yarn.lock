@@ -1647,9 +1647,9 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-gpii-express@1.0.7-dev.20170419T132453Z.1118304:
-  version "1.0.7-dev.20170419T132453Z.1118304"
-  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.7-dev.20170419T132453Z.1118304.tgz#f90c378e2a9ec78959a0dabc6dcd3ac62393588d"
+gpii-express@1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/gpii-express/-/gpii-express-1.0.7.tgz#5a8fddb22285a086be9f5f12a866b378d1bc090e"
   dependencies:
     body-parser "1.17.1"
     cookie-parser "1.4.3"
@@ -1666,14 +1666,14 @@ gpii-launcher@1.0.0-dev.20170421T083910Z.6a173da:
     kettle "1.4.1"
     yargs "7.1.0"
 
-gpii-pouchdb@1.0.1-dev.20170420T094149Z.82af4d9:
-  version "1.0.1-dev.20170420T094149Z.82af4d9"
-  resolved "https://registry.yarnpkg.com/gpii-pouchdb/-/gpii-pouchdb-1.0.1-dev.20170420T094149Z.82af4d9.tgz#c5276fcea558c70aac0553e7e21502f1a0def896"
+gpii-pouchdb@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/gpii-pouchdb/-/gpii-pouchdb-1.0.1.tgz#f2750c98225c0c6146aed2c02b94f73b65cc6de4"
   dependencies:
     body-parser "1.17.1"
     express "4.15.2"
     express-pouchdb "git://github.com/the-t-in-rtf/express-pouchdb.git#1b89c3968b612a955c51a1c5e45b2ffc75620aeb"
-    gpii-express "1.0.7-dev.20170419T132453Z.1118304"
+    gpii-express "1.0.7"
     graceful-fs "4.1.11"
     infusion "3.0.0-dev.20170322T234120Z.278de35"
     istanbul "0.4.5"

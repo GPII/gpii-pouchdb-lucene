@@ -14,9 +14,9 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "adm-zip": "0.4.7",
-    "gpii-express": "1.0.7-dev.20170419T132453Z.1118304",
+    "gpii-express": "1.0.7",
     "gpii-launcher": "1.0.0-dev.20170421T083910Z.6a173da",
-    "gpii-pouchdb": "1.0.1-dev.20170420T094149Z.82af4d9",
+    "gpii-pouchdb": "1.0.1",
     "infusion": "3.0.0-dev.20170322T234120Z.278de35",
     "request": "2.81.0",
     "rimraf": "2.6.1"
