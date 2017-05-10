@@ -1,10 +1,10 @@
-# The standard configuration file to run our Vagrant tests in QI
+# The standard configuration file to run our Vagrant tests in QI.
 #
 # See https://github.com/avtar/qi-development-environments
 ---
 # Cache directories such as 'node_modules' in between stages.
 cache:
-  key: "$CI_BUILD_REF_NAME"
+  key: "$CI_COMMIT_SHA"
   untracked: true
   paths:
     - node_modules/
@@ -18,9 +18,9 @@ stages:
 # Move the '.vagrant' directory to a location so that it won't be removed by the CI runner when it
 # cleans the workspace.
 before_script:
-  - "mkdir -p ../.vagrant-$CI_BUILD_REF_NAME"
+  - "mkdir -p ../.vagrant-$CI_COMMIT_SHA"
   - rm -fr .vagrant
-  - "ln -s ../.vagrant-$CI_BUILD_REF_NAME .vagrant"
+  - "ln -sf ../.vagrant-$CI_COMMIT_SHA .vagrant"
 
 # "when: always" ensures the 'vagrant up' (and later 'vagrant destroy -f') command is run always,
 # so failures in other stages won't interfere with the execution of these critical stages.
@@ -38,6 +38,11 @@ vagrant_tests:
 vagrant_destroy:
   stage: vagrant_destroy
   script:
+    # Using separate vagrant halt and destroy commands as workarounds for a VirtualBox bug:
+    # https://www.virtualbox.org/ticket/12477
+    # https://github.com/mitchellh/vagrant/issues/8104
+    - vagrant halt
     - vagrant destroy -f
-    - "rm -fr ../.vagrant-$CI_BUILD_REF_NAME"
+    - "rm -fr ../.vagrant-$CI_COMMIT_SHA"
   when: always
+  
