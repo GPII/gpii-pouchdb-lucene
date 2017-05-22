@@ -6,8 +6,7 @@
   "repository": "https://github.com/GPII/gpii-pouchdb-lucene/",
   "scripts": {
     "test": "node node_modules/istanbul/lib/cli.js cover tests/js/lucene-tests.js",
-    "postinstall": "npm run clean && npm run build",
-    "clean": "node node_modules/rimraf/bin.js build && node node_modules/mkdirp/bin/cmd.js build",
+    "postinstall": "npm run build",
     "build": "node bin/build_couchdb_lucene.js"
   },
   "author": "Tony Atkins <tony@raisingthefloor.org>",
