@@ -13,9 +13,16 @@ var sampleDataFile = path.resolve(__dirname, "../data/sample.json");
 
 fluid.defaults("gpii.tests.pouch.lucene.harness", {
     gradeNames: ["fluid.component"],
-    pouchPort:  "9753",
-    baseUrl:    "http://localhost:9753", // TODO: Convert these to use template strings
-    lucenePort: "3579",
+    ports: {
+        pouch:  "9753",
+        lucene: "3579"
+    },
+    baseUrl: {
+        expander: {
+            funcName: "fluid.stringTemplate",
+            args: ["http://admin:admin@localhost:%port", { port: "{that}.options.ports.pouch"}]
+        }
+    },
     events: {
         onReadyToDie:     null,
         onPouchStarted:   null,
@@ -33,7 +40,7 @@ fluid.defaults("gpii.tests.pouch.lucene.harness", {
         pouch: {
             type: "gpii.express",
             options: {
-                port: "{harness}.options.pouchPort",
+                port: "{harness}.options.ports.pouch",
                 baseUrl: "{harness}.options.baseUrl",
                 listeners: {
                     onStarted: "{harness}.events.onExpressStarted.fire"
@@ -43,6 +50,17 @@ fluid.defaults("gpii.tests.pouch.lucene.harness", {
                         type: "gpii.pouch.express",
                         options: {
                             path: "/",
+                            // The following whisks away the inherited options that would disable the leaky "changes"
+                            // endpoint. Turns out couchdb-lucene searches will fail with overly vague "not found"
+                            // errors if that endpoint is not present.
+                            distributeOptions: {
+                                source:       "{that}.options.expressPouchConfig.overrideMode",
+                                target:       "{that}.options.devNull",
+                                removeSource: true
+                            },
+                            expressPouchConfig: {
+                                logPath: "{that}.options.expressPouchLogPath"
+                            },
                             databases: {
                                 "sample":   { "data": sampleDataFile }
                             },
@@ -59,7 +77,7 @@ fluid.defaults("gpii.tests.pouch.lucene.harness", {
         lucene: {
             type: "gpii.pouch.lucene",
             options: {
-                port:           "{harness}.options.lucenePort",
+                port:           "{harness}.options.ports.lucene",
                 dbUrl:          "{harness}.options.baseUrl",
                 processTimeout: 4000,
                 listeners: {
