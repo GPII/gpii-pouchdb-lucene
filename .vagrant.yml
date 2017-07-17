@@ -12,7 +12,6 @@ env:
 
 stages:                # Stages to perform when 'ci test' command is invoked
   - setup              # Install our system-level dependencies, etc.
-  - mount              # Mount our network share as a top-level drive.
   - test               # Run the actual tests
 
 setup_job:
@@ -25,12 +24,6 @@ setup_job:
     - choco install python2 -y
     - choco install vcbuildtools -y
     - do.ps1 -c "npm install -g node-inspector"
-
-mount_job:
-  stage: mount
-  script:
-    - "net use v: \\\\vboxsrv\\vagrant  /yes"
-    - "do.ps1 -c 'net use v: \\\\VBOXSVR\\vagrant /yes'"
 
 test_job:
   stage: test          # name of the stage
