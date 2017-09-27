@@ -28,4 +28,6 @@ setup_job:
 test_job:
   stage: test          # name of the stage
   script:              # One line per command to execute
+    # Required to avoid problems installing esparse.
+    - "npm config set bin-links false --global"
     - "do.ps1 -c 'v: && npm install && npm test'"
