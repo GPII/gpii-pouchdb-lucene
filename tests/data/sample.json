@@ -4,11 +4,13 @@
             "_id": "_design/lucene",
             "fulltext": {
                 "by_content": {
-                    "index": "function(doc) { var ret=new Document(); ret.add(doc.content); return ret; }",
+                    "index": "function(doc) { var ret=new Document(); ret.add(doc.content); ret.add(doc.content, { field: \"name\", type: \"string\"} );return ret; }",
                     "defaults": {
+                        "type": "text",
                         "store": "yes"
                     }
-                }
+                },
+                "analyzer": "perfield:{default:\"porter\", name: \"string\"}"
             }
         },
         { "content": "Alpha Cat"},

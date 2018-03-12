@@ -90,7 +90,7 @@ fluid.defaults("gpii.tests.pouch.lucene.caseHolder", {
         sortedRequest: {
             type: "kettle.test.request.http",
             options: {
-                path:   "/local/sample/_design/lucene/by_content?q=cat&sort=\\default",
+                path:   "/local/sample/_design/lucene/by_content?q=cat&sort=\\name<string>",
                 port:   "{testEnvironment}.options.ports.lucene",
                 method: "GET"
             }
