@@ -1,6 +1,6 @@
 {
     "name": "gpii-pouchdb-lucene",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "A wrapper for couchdb-lucene to allow it to be required and used in tests.",
     "main": "index.js",
     "repository": "https://github.com/GPII/gpii-pouchdb-lucene/",
