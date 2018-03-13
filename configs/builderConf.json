@@ -3,10 +3,10 @@
   "options": {
     "gradeNames": ["gpii.pouchdb.builder"],
     "url": "https://github.com/rnewson/couchdb-lucene.git",
-    "hash": "ce773de1becf8a400e0344a43cf6eea3134dcc63",
-    "version": "1.0.2",
+    "hash": "13364ede1bd57b9d7ef9a610b2b813bbe81c56f2",
+    "version": "2.0.0",
     "buildDir": "%gpii-pouchdb-lucene/build",
     "srcDir": "%gpii-pouchdb-lucene/build/couchdb-lucene",
-    "zipPath": "%gpii-pouchdb-lucene/build/couchdb-lucene/target/couchdb-lucene-1.0.2-dist.zip"
+    "zipPath": "%gpii-pouchdb-lucene/build/couchdb-lucene/target/couchdb-lucene-2.0.0-dist.zip"
   }
 }

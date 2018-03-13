@@ -17,13 +17,13 @@ stages:                # Stages to perform when 'ci test' command is invoked
 setup_job:
   stage: setup
   script:
-    - choco install nodejs.install --version 6.9.1 -y
-    - do.ps1 -c "npm install -g node-inspector prebuild prebuild-install"
+    - choco install nodejs-lts -y
+    - do.ps1 -c "npm install -g prebuild prebuild-install"
     - choco install maven -y
     # Required to build leveldown
     - choco install python2 -y
     - choco install vcbuildtools -y
-    - do.ps1 -c "npm install -g node-inspector"
+    - "npm config set msvs_version 2015 --global"
 
 test_job:
   stage: test          # name of the stage
