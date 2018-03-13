@@ -8,7 +8,6 @@ env:
 
 install:
   - nvm install $NODE_VERSION
-  - npm install -g yarn
   - npm install
 
 script:

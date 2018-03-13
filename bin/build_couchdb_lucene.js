@@ -24,6 +24,7 @@ require("../");
 var child_process = require("child_process");
 var fs            = require("fs");
 var rimraf        = require("rimraf");
+var mkdirp        = require("mkdirp");
 
 fluid.registerNamespace("gpii.pouchdb.builder");
 
@@ -37,14 +38,32 @@ gpii.pouchdb.builder.checkForZip = function (that) {
 };
 
 gpii.pouchdb.builder.clean = function (that) {
-    rimraf(that.options.resolvedSrcDir, function (error) {
-        if (error) {
-            that.events.onError.fire(error);
-        }
-        else {
-            that.events.onClean.fire();
-        }
+    var promises = [];
+
+    promises.push(function () {
+        var buildDirCleanupPromise = fluid.promise();
+
+        rimraf(that.options.resolvedBuildDir, function (error) {
+            if (error) { buildDirCleanupPromise.reject(error); }
+            else { buildDirCleanupPromise.resolve(); }
+        });
+
+        return buildDirCleanupPromise;
     });
+
+    promises.push(function () {
+        var srcDirCreatePromise = fluid.promise();
+
+        mkdirp(that.options.resolvedSrcDir, function (error) {
+            if (error) { srcDirCreatePromise.reject(error); }
+            else { srcDirCreatePromise.resolve(); }
+        });
+
+        return srcDirCreatePromise;
+    });
+
+    var sequence = fluid.promise.sequence(promises);
+    sequence.then(that.events.onClean.fire, that.events.onError.fire);
 };
 
 gpii.pouchdb.builder.execCommand = function (that, template, cmdOptions, eventName) {
@@ -110,11 +129,23 @@ fluid.defaults("gpii.pouchdb.builder", {
             funcName: "gpii.pouchdb.builder.checkForZip",
             args:     ["{that}"]
         },
+        "onClean.log": {
+            funcName: "fluid.log",
+            args:     ["Cleaned up build and source directories..."]
+        },
         "onClean.clone": {
             func: "{that}.clone"
         },
+        "onClone.log": {
+            funcName: "fluid.log",
+            args:     ["Cloned couchb-lucene repository..."]
+        },
         "onClone.checkout": {
             func: "{that}.checkout"
+        },
+        "onCheckout.log": {
+            funcName: "fluid.log",
+            args:     ["Checked out couchb-lucene tagged version..."]
         },
         "onCheckout.build": {
             func: "{that}.build"

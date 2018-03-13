@@ -12,7 +12,6 @@ env:
 
 stages:                # Stages to perform when 'ci test' command is invoked
   - setup              # Install our system-level dependencies, etc.
-  - mount              # Mount our network share as a top-level drive.
   - test               # Run the actual tests
 
 setup_job:
@@ -26,13 +25,9 @@ setup_job:
     - choco install vcbuildtools -y
     - do.ps1 -c "npm install -g node-inspector"
 
-mount_job:
-  stage: mount
-  script:
-    - "net use v: \\\\vboxsrv\\vagrant  /yes"
-    - "do.ps1 -c 'net use v: \\\\VBOXSVR\\vagrant /yes'"
-
 test_job:
   stage: test          # name of the stage
   script:              # One line per command to execute
+    # Required to avoid problems installing esparse.
+    - "npm config set bin-links false --global"
     - "do.ps1 -c 'v: && npm install && npm test'"

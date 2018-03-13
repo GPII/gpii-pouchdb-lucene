@@ -16,7 +16,6 @@ kettle.loadTestingSupport();
 require("gpii-express");
 gpii.express.loadTestingSupport();
 
-
 fluid.defaults("gpii.tests.pouch.lucene.caseHolder", {
     gradeNames: ["gpii.test.express.caseHolder"],
     sequenceEnd: [
@@ -84,7 +83,7 @@ fluid.defaults("gpii.tests.pouch.lucene.caseHolder", {
             type: "kettle.test.request.http",
             options: {
                 path:   "/local/sample/_design/lucene/by_content?q=cat",
-                port:   "{testEnvironment}.options.lucenePort",
+                port:   "{testEnvironment}.options.ports.lucene",
                 method: "GET"
             }
         },
@@ -92,7 +91,7 @@ fluid.defaults("gpii.tests.pouch.lucene.caseHolder", {
             type: "kettle.test.request.http",
             options: {
                 path:   "/local/sample/_design/lucene/by_content?q=cat&sort=\\default",
-                port:   "{testEnvironment}.options.lucenePort",
+                port:   "{testEnvironment}.options.ports.lucene",
                 method: "GET"
             }
         }
@@ -103,14 +102,10 @@ fluid.defaults("gpii.tests.pouch.lucene.caseHolder", {
 fluid.defaults("gpii.tests.pouch.lucene.environment", {
     gradeNames: ["fluid.test.testEnvironment"],
     hangWait:   20000,
-    pouchPort:  "9998",
-    baseUrl:    {
-        expander: {
-            funcName: "fluid.stringTemplate",
-            args:     ["http://localhost:%port", { port: "{that}.options.pouchPort"}]
-        }
+    ports: {
+        pouch:  "9998",
+        lucene: "3598"
     },
-    lucenePort: "3598",
     events: {
         constructFixtures: null,
         onHarnessReady: null,
@@ -125,9 +120,7 @@ fluid.defaults("gpii.tests.pouch.lucene.environment", {
             type:          "gpii.tests.pouch.lucene.harness",
             createOnEvent: "constructFixtures",
             options: {
-                pouchPort:  "{testEnvironment}.options.pouchPort",
-                baseUrl:    "{testEnvironment}.options.baseUrl",
-                lucenePort: "{testEnvironment}.options.lucenePort",
+                ports: "{testEnvironment}.options.ports",
                 listeners: {
                     "onStarted.notifyParent": {
                         func: "{testEnvironment}.events.onHarnessReady.fire"
