@@ -3,3 +3,4 @@ node_modules
 reports
 .vagrant
 build/couchdb-lucene
+package-lock.json
