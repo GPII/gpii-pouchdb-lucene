@@ -12,7 +12,7 @@
     "author": "Tony Atkins <tony@raisingthefloor.org>",
     "license": "BSD-3-Clause",
     "dependencies": {
-        "adm-zip": "0.4.13",
+        "adm-zip": "0.6.1",
         "gpii-express": "1.0.15",
         "gpii-launcher": "1.0.0-dev.20170712T140305Z.aa60d4a",
         "gpii-pouchdb": "1.0.14",
